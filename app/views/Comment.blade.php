@@ -29,7 +29,7 @@
 <div class="container"/>
 	<div class="row" >
 		<div class="panel panel-info">
-			<div class="panel-heading well"> Heading</div>
+			<div class="panel-heading well">Pang Profile</div>
 	<div class="panel-body"> 
 
 		<div class="col-md-6 "><img src="p.jpg" width="500" height="300"></div> 
