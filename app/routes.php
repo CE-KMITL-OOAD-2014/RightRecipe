@@ -79,7 +79,11 @@ Route::get('/', function(){
 	// $obj->setName('eieiei');
 	// $obj->editUser();
 
-	return 'Hello';
+	$obj=new Ingredient;
+	$obj->setName('หมู');
+	$obj->newIngredient();
+	return 'H';
+	
 
 
 
