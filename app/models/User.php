@@ -1,26 +1,106 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+	class User {
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+		private $id;
+		private $name;
+		private $password;
+		private $email;
+		private $image;
 
-	use UserTrait, RemindableTrait;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+   
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+    }
+
+    
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    
+    
+    public function setPassword($password)
+    {
+        $this->password = $password;
+      
+    }
+
+    
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+   
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+   
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function newUser(){
+    	$new=new userEloquent;
+    	$new->name=$this->name;
+    	$new->password=$this->password;
+    	$new->email=$this->email;
+    	$new->image=$this->image;
+    	$new->save();
+    }
+
+    public static function getById($id){
+    	$data=userEloquent::find($id);
+    	if($data==NULL){
+    		return NULL;
+    	}
+
+    	$obj=new User;
+    	$obj->id=$data->id;
+    	$obj->name=$data->name;
+    	$obj->password=$data->password;
+    	$obj->email=$data->email;
+    	$obj->image=$data->image;
+
+    	return $obj;
+
+    }
+
+    public function editUser(){
+    	$edit=userEloquent::find($this->id);
+    	$edit->name=$this->name;
+    	$edit->password=$this->password;
+    	$edit->email=$this->email;
+    	$edit->image=$this->image;
+    	$edit->save();
+    }
 
 }
+
+
+
+
+  ?>

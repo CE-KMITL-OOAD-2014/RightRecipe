@@ -3,11 +3,11 @@
 	/**
 	* 
 	*/
-	class commentRespository extends Eloquent
+	class commentEloquent extends Eloquent
 	{
 		public $table='comment';
 		
 	}
 
 
- ?
+ ?>

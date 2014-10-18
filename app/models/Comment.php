@@ -4,167 +4,151 @@ class Comment {
 	private $comment;
 	private $time;
 	private $score;
-	private $recipeId;
-	private $userId;
+	private $recipeid;
+	private $userid;
 
 	public function __constructor(){
 
 	}
 
-	public function save(){
-
-	}
-
-	public static function getById($allComment){
-
-	}
-
-	public static function getByRecipe($allComment,$recipeId){
-
-	}
-	
-
-    /**
-     * Gets the value of id.
-     *
-     * @return mixed
-     */
-    public function getId()
+	 public function getid()
     {
         return $this->id;
     }
     
-    /**
-     * Sets the value of id.
-     *
-     * @param mixed $id the id 
-     *
-     * @return self
-     */
-    private function _setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of comment.
-     *
-     * @return mixed
-     */
+     
     public function getComment()
     {
         return $this->comment;
     }
     
-    /**
-     * Sets the value of comment.
-     *
-     * @param mixed $comment the comment 
-     *
-     * @return self
-     */
-    private function _setComment($comment)
+   
+    public function setComment($comment)
     {
         $this->comment = $comment;
 
         return $this;
     }
 
-    /**
-     * Gets the value of time.
-     *
-     * @return mixed
-     */
+    
     public function getTime()
     {
         return $this->time;
     }
     
-    /**
-     * Sets the value of time.
-     *
-     * @param mixed $time the time 
-     *
-     * @return self
-     */
-    private function _setTime($time)
+   
+    public function setTime($time)
     {
         $this->time = $time;
 
         return $this;
     }
 
-    /**
-     * Gets the value of score.
-     *
-     * @return mixed
-     */
+   
     public function getScore()
     {
         return $this->score;
     }
     
-    /**
-     * Sets the value of score.
-     *
-     * @param mixed $score the score 
-     *
-     * @return self
-     */
-    private function _setScore($score)
+   
+    public function setScore($score)
     {
         $this->score = $score;
 
         return $this;
     }
 
-    /**
-     * Gets the value of recipeId.
-     *
-     * @return mixed
-     */
-    public function getRecipeId()
+   
+    public function getRecipeid()
     {
-        return $this->recipeId;
+        return $this->recipeid;
     }
     
-    /**
-     * Sets the value of recipeId.
-     *
-     * @param mixed $recipeId the recipe id 
-     *
-     * @return self
-     */
-    private function _setRecipeId($recipeId)
+   
+    public function setRecipeid($recipeid)
     {
-        $this->recipeId = $recipeId;
+        $this->recipeid = $recipeid;
 
         return $this;
     }
 
-    /**
-     * Gets the value of userId.
-     *
-     * @return mixed
-     */
-    public function getUserId()
+   
+    public function getUserid()
     {
-        return $this->userId;
+        return $this->userid;
     }
     
-    /**
-     * Sets the value of userId.
-     *
-     * @param mixed $userId the user id 
-     *
-     * @return self
-     */
-    private function _setUserId($userId)
+    
+    public function setUserid($userid)
     {
-        $this->userId = $userId;
+        $this->userid = $userid;
 
         return $this;
     }
+
+	public function newComment(){
+		$new=new commentEloquent;
+		$new->score=$this->score;
+		$new->comment=$this->comment;
+		$new->userid=$this->userid;
+		$new->recipeid=$this->recipeid;
+		$new->time=$this->time;
+		$new->save();
+	}
+	public function editComment(){
+		$edit=commentEloquent::find($this->id);
+        $edit->comment=$this->comment;
+        $edit->time=$this->time;
+        $edit->save();
+	}
+
+	public function deleteComment(){
+		$data=commentEloquent::find($this->id);
+		$data->delete();
+	}
+
+	public static function getById($id){
+		$data=commentEloquent::find($id);
+           
+            if($data==NULL){
+                return NULL;
+            }   
+            $obj=new Comment;
+            $obj->id=$data->id;
+            $obj->comment=$data->comment;
+            $obj->score=$data->score;
+            $obj->recipeid=$data->recipeid;
+            $obj->userid=$data->userid;
+            $obj->time=$data->time;
+
+            return $obj;
+
+	}
+
+	public static function getByRecipe($recipeid){
+		$data=commentEloquent::where('recipeid','=',$recipeid)->get();
+		$size=count($data);
+		if($data==NULL){
+			return NULL;
+		}
+
+		
+		$comment=array();
+
+		for($i=0;$i<$size;$i++){
+				$obj=new Comment;
+				$obj->id=$data[$i]->id;
+            	$obj->comment=$data[$i]->comment;
+            	$obj->score=$data[$i]->score;
+            	$obj->recipeid=$data[$i]->recipeid;
+            	$obj->userid=$data[$i]->userid;
+            	$obj->time=$data[$i]->time;
+            	$comment[$i]=$obj;
+		}
+		return $comment;
+	}
+	
+
+ 
+   
 }

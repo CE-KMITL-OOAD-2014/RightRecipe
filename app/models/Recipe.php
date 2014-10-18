@@ -46,7 +46,7 @@
 
         public function setCategory($value){
             $this->category=$value;
-            
+
         }
         
         public function setStep($value){
@@ -74,8 +74,8 @@
 
         }
 
-        public function edit(){
-            $edit=recipeEloquent::find($this->id);
+        public function editRecipe(){
+            $edit=recipeEloquent::find($this->$id);
             $edit->name=$this->name;
             $edit->categoryid=$this->category;
             $edit->step=$this->step;
@@ -83,7 +83,7 @@
             $edit->save();
         }
 
-        public function delete(){
+        public function deleteRecipe(){
             $data=recipeEloquent::find($this->id);
             $data->delete();
 
