@@ -1,7 +1,7 @@
 <?php 
 	class Search{
 
-		function searchByName($data,$name){
+		public function searchByName($data,$name){
 
 			$result=array();
 
