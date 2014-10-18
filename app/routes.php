@@ -79,15 +79,27 @@ Route::get('/', function(){
 	// $obj->setName('eieiei');
 	// $obj->editUser();
 
-	$obj=new Ingredient;
-	$obj->setName('หมู');
-	$obj->newIngredient();
-	return 'H';
+	// $obj=new Ingredient;
+	// $obj->setName('ไข่');
+	// $obj->newIngredient();
+	// return 'H';
+	
+	// $obj=new Recipecompo;
+	// $obj->setIngredientid(1);
+	// $obj->setRecipeid(5);
+	// $obj->newRecipecompo();
+
 	
 
+	$value=Recipecompo::getByIngredientid(1);
+	$size=count($value);
+	for($i=0;$i<$size;$i++){
+	
+	  echo $value[$i]->getRecipeid();
+	  echo ("\n");
 
-
-
+	}
+return 'eiei' ;
 
 	
 
