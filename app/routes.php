@@ -74,12 +74,12 @@ Route::get('/', function(){
 	// $obj->setEmail('555');
 	// $obj->setImage('eiei');
 	// $obj->newUser();
-	$obj=User::getById(3);
-	//var_dump($obj);
-	$obj->setName('eieiei');
-	$obj->editUser();
+	// $obj=User::getById(3);
+	// //var_dump($obj);
+	// $obj->setName('eieiei');
+	// $obj->editUser();
 
-	return 'eiei';
+	return 'Hello';
 
 
 
