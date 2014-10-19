@@ -74,16 +74,32 @@ Route::get('/', function(){
 	// $obj->setEmail('555');
 	// $obj->setImage('eiei');
 	// $obj->newUser();
-	$obj=User::getById(3);
-	//var_dump($obj);
-	$obj->setName('eieiei');
-	$obj->editUser();
+	// $obj=User::getById(3);
+	// //var_dump($obj);
+	// $obj->setName('eieiei');
+	// $obj->editUser();
 
-	return 'eiei';
+	// $obj=new Ingredient;
+	// $obj->setName('ไข่');
+	// $obj->newIngredient();
+	// return 'H';
+	
+	// $obj=new Recipecompo;
+	// $obj->setIngredientid(1);
+	// $obj->setRecipeid(5);
+	// $obj->newRecipecompo();
 
+	
 
+	$value=Recipecompo::getByIngredientid(1);
+	$size=count($value);
+	for($i=0;$i<$size;$i++){
+	
+	  echo $value[$i]->getRecipeid();
+	  echo ("\n");
 
-
+	}
+return 'eiei' ;
 
 	
 
