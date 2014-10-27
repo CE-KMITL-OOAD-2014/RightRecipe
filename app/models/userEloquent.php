@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class userEloquent extends Eloquent 
+class UserEloquent extends Eloquent 
 implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;

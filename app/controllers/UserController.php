@@ -1,9 +1,9 @@
 <?php 
-class userController extends BaseController
+class UserController extends BaseController
 {
 	public function getsignup()
 	{
-		return View::make('Signup');
+		return View::make('signup');
 	}
 
 	public function getsignin()

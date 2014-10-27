@@ -4,6 +4,7 @@
         private $name;
         private $id;
         private $category;
+        private $ingredient;
         private $step;
         private $userid;
         private $image;
@@ -24,7 +25,15 @@
             return $this->category;
         }
 
+       
+        public function getIngredient(){
+
+           
+            return implode($this->ingredient,",");
+        }
+
         public function getStep(){
+
             return $this->step;
         }
 
@@ -40,9 +49,11 @@
             $this->name=$value;
         }
         
-        // public function setId($value){
-        //     $this->id=$value;
-        // }
+       
+
+        public function setIngredient($value){
+            $this->ingredient=$value;
+        }
 
         public function setCategory($value){
             $this->category=$value;
@@ -61,12 +72,15 @@
             $this->image=$value;
         }
 
+        
+
 
 
         public function newRecipe(){
             $new=new recipeEloquent;
             $new->name=$this->name;
             $new->categoryid=$this->category;
+            $new->ingredient=$this->getIngredient();
             $new->step=$this->step;
             $new->userid=$this->userid;
             $new->image=$this->image;
@@ -104,6 +118,7 @@
                 $obj->id=$data[$i]->id;
                 $obj->name=$data[$i]->name;
                 $obj->categoryid=$data[$i]->category;
+                $obj->ingretext=$data[$i]->ingretext;
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
@@ -123,6 +138,7 @@
             $obj->id=$data->id;
             $obj->name=$data->name;
             $obj->categoryid=$data->category;
+            $obj->ingretext=$data->ingretext;
             $obj->step=$data->step;
             $obj->userid=$data->userid;
             $obj->image=$data->image;
@@ -146,6 +162,7 @@
                 $obj->id=$data[$i]->id;
                 $obj->name=$data[$i]->name;
                 $obj->categoryid=$data[$i]->category;
+                $obj->ingredient=$data[$i]->ingredient;
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
