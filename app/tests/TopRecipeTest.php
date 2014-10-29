@@ -1,7 +1,7 @@
 <?php 
 		
 	class TopRecipeTest extends TestCase{
-		public function TestSortRecipe(){
+		public function testSortRecipe(){
 
 			$arrayScore=array();
 			$score=0;
@@ -28,7 +28,7 @@
 			$this->assertGreaterThan($result[8]->getScore(),$result[9]->getScore());
 		}
 
-		public function  TestAllComment(){
+		public function  testAllComment(){
 
 			$recipescore=array();
 			$score=0;
@@ -37,14 +37,14 @@
 				$score=($i*2);
 				$expectScore+=$score;
 				$recipescore[$i]=Mockery::mock('Comment');
-				$recipescore[$i]=shouldReceive('getScore')->andReturn($score);
+				$recipescore[$i]->shouldReceive('getScore')->andReturn($score);
 			}
 
-			$score=new Score($recipescore);
+			$score=new RecipeScore($recipescore);
 			$result=$score->calculateScore();
 			$this->assertEquals($result,$expectScore);
 
-		}
+		} 
 
 
 
