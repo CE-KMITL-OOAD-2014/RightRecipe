@@ -13,8 +13,8 @@
 
 			}
 
-			$toprecipe=new TopRecipe;
-			$toprecipe->setScore($arrayScore);
+			$toprecipe=new TopRecipe($arrayScore);
+			$toprecipe->setScore();
 			$result=$toprecipe->sortRecipe();
 
 			$this->assertGreaterThan($result[0]->getScore(),$result[1]->getScore());
@@ -27,27 +27,6 @@
 			$this->assertGreaterThan($result[7]->getScore(),$result[8]->getScore());
 			$this->assertGreaterThan($result[8]->getScore(),$result[9]->getScore());
 		}
-
-		public function  testAllComment(){
-
-			$recipescore=array();
-			$score=0;
-			$expectScore=0;
-			for($i=0;$i<10;$i++){
-				$score=($i*2);
-				$expectScore+=$score;
-				$recipescore[$i]=Mockery::mock('Comment');
-				$recipescore[$i]->shouldReceive('getScore')->andReturn($score);
-			}
-
-			$score=new RecipeScore($recipescore);
-			$result=$score->calculateScore();
-			$this->assertEquals($result,$expectScore);
-
-		} 
-
-
-
 
 	}
 

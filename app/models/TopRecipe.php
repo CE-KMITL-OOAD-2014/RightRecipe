@@ -8,7 +8,7 @@
 		private $totalScore;
 		private $topRecipe;
 		private $allComment;
-		public function __construct($argument)
+		public function __construct()
 		{
 			//Send comment to here
 			# code...
