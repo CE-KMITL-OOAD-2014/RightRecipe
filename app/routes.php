@@ -2,33 +2,21 @@
 
 Route::get('/',array('before'=>'auth',function(){
 
-	return 'test';
+	return Auth::user()->id;
 }));
 Route::get('signup','UserController@getsignup');
 Route::post('signup','UserController@postsignup');
 
 Route::get('signin','UserController@getsignin');
-Route::post('/signin',function(){
-		$credentials=Input::only('username','password');
-		if(Auth::attempt($credentials)){
-			return Redirect::intended('/');
+Route::post('signin','UserController@postsignin');
 
-		}
-		return Redirect::to('signin');
-});
-
-
-Route::get('signout',function(){ 
-		Auth::logout();
-		return 'logout';
-});
-
-
-
+Route::get('signout','UserController@getsignout');
 
 
 Route::get('newrecipe','RecipeController@getnewrecipe');
 Route::post('newrecipe','RecipeController@postnewrecipe');
+
+Route::get('/a','UserController@showuser');
 
 Route::get('/search',function(){
 		$value=Search::searchByIngre('ถั่ว');

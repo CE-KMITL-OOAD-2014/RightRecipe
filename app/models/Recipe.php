@@ -5,6 +5,7 @@
         private $id;
         private $category;
         private $ingredient;
+        private $capacity;
         private $step;
         private $userid;
         private $image;
@@ -27,9 +28,13 @@
 
        
         public function getIngredient(){
-
+            
            
-            return implode($this->ingredient,",");
+            return explode(",",$this->ingredient);
+        }
+
+        public function getCapacity(){
+            return explode(",",$this->capacity);
         }
 
         public function getStep(){
@@ -52,7 +57,11 @@
        
 
         public function setIngredient($value){
-            $this->ingredient=$value;
+            $this->ingredient=implode($value,",");
+        }
+
+         public function setCapacity($data){
+            $this->capacity=implode($data,",");
         }
 
         public function setCategory($value){
@@ -80,9 +89,10 @@
             $new=new recipeEloquent;
             $new->name=$this->name;
             $new->categoryid=$this->category;
-            $new->ingredient=$this->getIngredient();
+            $new->ingredient= implode($this->getIngredient(),",");
+            $new->capacity=implode($this->getCapacity(),",");
             $new->step=$this->step;
-            $new->userid=$this->userid;
+            $new->userid=Auth::user()->id;
             $new->image=$this->image;
             $new->save();
 

@@ -14,11 +14,12 @@ class RecipeController extends BaseController
 		$obj->setImage(Input::get('image'));
 		$obj->setCategory(Input::get('category'));
 		$obj->setIngredient(Input::get('ingredient'));
-		$obj->setStep(($obj->getIngredient())."\n".(Input::get('step')));
+		$obj->setStep(Input::get('step'));
 		$obj->setUserid('123');
+		$obj->setCapacity(Input::get('capacity'));
 		$obj->newRecipe();
 					
-		return Response::make('/signin');
+		//	return Response::make('/signin');
 	}
 
 

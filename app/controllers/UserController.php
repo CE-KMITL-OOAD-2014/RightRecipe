@@ -6,10 +6,6 @@ class UserController extends BaseController
 		return View::make('signup');
 	}
 
-	public function getsignin()
-	{
-		return View::make('signin');
-	}
 
 	public function postsignup(){
 		$user=new User;
@@ -19,6 +15,32 @@ class UserController extends BaseController
 		$user->newUser();
 		return Response::make('user created');
 	}
+	public function getsignin()
+
+	{
+		if(!Auth::guest()){ return Redirect::to('/');}
+		return View::make('signin');
+	}
+	public function postsignin(){
+		$credentials=Input::only('username','password');
+		if(Auth::attempt($credentials)){
+			return Redirect::intended('/');
+		}
+		return Redirect::to('signin');
+	}
+
+	public function getsignout(){
+		Auth::logout();
+		return 'logout';
+	}
+
+	public function showuser()
+	{
+			$users=User::all();
+			return View::make('user')->with('users',$users);
+	}
+
+
 
 
 } ?>

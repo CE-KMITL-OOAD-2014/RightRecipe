@@ -24,8 +24,8 @@
 					 	<form  action="{{url('newrecipe')}}" method="POST">
 							<div class="row">
 									<label for="name">Recipe name </label>
-									<input id="name" class="form-control" class="input" name="name" type="text" value="" size="30" required /><br />
 							</div>
+							<input id="name" class="form-control" class="input" name="name" type="text"size="30"required/><br />
 							<div class="form-group">
 								<div class="row">
 							    		<label for="image">Photo:</label>
@@ -36,7 +36,7 @@
 							<div class="row">
 									<label for="category">Category </label>
 									<div class="btn-group">
-										<select class="form-control"  name="category" >
+										<select class="form-control" name="category">
 											<option name="category" value="2">ต้ม</option>
 											<option name="category" value="1">ผัด</option>
 											<option name="category" value="3">ทอด</option>
@@ -51,17 +51,29 @@
 								<label for="ingredient">Ingredient </label>
 							</div>
 
-												
-							<input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่1"><br>
-							<input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่2"><br>
-							<input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่3"><br>
-							<input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่4"><br>
-							<input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่5"><br>
+
+							<table>
+								<tr><td><input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่1"required><br></td>
+									<td><input name="capacity[]" type="text" class="form-control" placeholder="ปริมาตร"required><br></td>
+								</tr>								
+								<tr><td><input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่2"required><br></td>
+									<td><input name="capacity[]" type="text" class="form-control" placeholder="ปริมาตร"required><br></td>
+								</tr>
+								<tr><td><input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่3"><br></td>
+									<td><input name="capacity[]" type="text" class="form-control" placeholder="ปริมาตร"><br></td>
+								</tr>
+								<tr><td><input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่4"><br></td>
+									<td><input name="capacity[]" type="text" class="form-control" placeholder="ปริมาตร"><br></td>
+								</tr>
+								<tr><td><input name="ingredient[]" type="text" class="form-control" placeholder="วัตถุดิบที่5"><br></td>
+									<td><input name="capacity[]" type="text" class="form-control" placeholder="ปริมาตร"><br></td>
+								</tr>
+							</table>
 
 							<div class="row ">
 								<label for="step">Process </label>
 							</div>
-							<input type="textarea" name="step" class="form-control" rows="5"required></textarea>
+							<textarea type="textarea" name="step" class="form-control" rows="5" required></textarea>
 							<br>
 
 							<div class="row ">
