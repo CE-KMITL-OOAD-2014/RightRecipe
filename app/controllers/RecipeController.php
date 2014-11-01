@@ -6,6 +6,11 @@ class RecipeController extends BaseController
 		return View::make('newRecipe');
 	}
 
+	public function gettestnewrecipe()
+	{
+		return View::make('index');
+	}	
+
 	public function postnewrecipe(){
 
 		$obj=new Recipe;

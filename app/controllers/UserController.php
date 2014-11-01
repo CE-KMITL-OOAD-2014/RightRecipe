@@ -3,7 +3,7 @@ class UserController extends BaseController
 {
 	public function getsignup()
 	{
-		return View::make('signup');
+		return View::make('user.signup');
 	}
 
 
@@ -13,13 +13,15 @@ class UserController extends BaseController
 		$user->setPassword(Hash::make(Input::get('password')));
 		$user->setEmail(Input::get('email'));
 		$user->newUser();
-		return Response::make('user created');
+		return Redirect::to('signin');
 	}
 	public function getsignin()
 
 	{
-		if(!Auth::guest()){ return Redirect::to('/');}
-		return View::make('signin');
+		if(Auth::check()){
+			return Redirect::to('/');
+		}
+		return View::make('user.signin');
 	}
 	public function postsignin(){
 		$credentials=Input::only('username','password');
@@ -30,14 +32,15 @@ class UserController extends BaseController
 	}
 
 	public function getsignout(){
-		Auth::logout();
-		return 'logout';
+		 Auth::logout();
+		 return Redirect::to('/');
 	}
 
 	public function showuser()
 	{
-			$users=User::all();
-			return View::make('user')->with('users',$users);
+			$name="PANG";
+			$email="hotmail";
+			return View::make('user.user')->with(array("name"=>$name,"email"=>$email));
 	}
 
 

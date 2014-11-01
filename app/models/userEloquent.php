@@ -23,7 +23,7 @@ implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-
+/*
 	public function getAuthIdentifier(){
 		return $this->getKey();
 	}
@@ -43,6 +43,6 @@ implements UserInterface, RemindableInterface {
 	public function getReminderEmail(){
 		return $this->email;
 	}
-
+*/
 
 }

@@ -1,20 +1,19 @@
 <?php
 
-Route::get('/',array('before'=>'auth',function(){
+Route::get('/','HomeController@getindex');
+Route::get('/signup','UserController@getsignup');
+Route::post('/signup','UserController@postsignup');
 
-	return Auth::user()->id;
-}));
-Route::get('signup','UserController@getsignup');
-Route::post('signup','UserController@postsignup');
+Route::get('/signin','UserController@getsignin');
+Route::post('/signin','UserController@postsignin');
 
-Route::get('signin','UserController@getsignin');
-Route::post('signin','UserController@postsignin');
-
-Route::get('signout','UserController@getsignout');
+Route::get('/signout','UserController@getsignout');
 
 
-Route::get('newrecipe','RecipeController@getnewrecipe');
-Route::post('newrecipe','RecipeController@postnewrecipe');
+Route::get('/newrecipe',array('before'=>'auth','uses'=>'RecipeController@getnewrecipe'));
+Route::post('/newrecipe','RecipeController@postnewrecipe');
+
+
 
 Route::get('/a','UserController@showuser');
 
@@ -26,8 +25,6 @@ Route::get('/search',function(){
 Route::get('/aa',function(){
 		$obj=new Search;
 		var_dump($obj->searchByCategory(0));
-
-
 
 });
 
