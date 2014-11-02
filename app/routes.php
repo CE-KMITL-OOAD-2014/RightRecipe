@@ -1,107 +1,40 @@
 <?php
 
-Route::get('/', function(){
-	// $obj=new Recipe;
-	// $obj->setName('ข้าวผัด');
-	// $obj->setCategory('ผัด');
-	// $obj->setStep('ghjkl;ddd');
-	// $obj->setImage('wertyuio');
-	// $obj->setUserid('1234');
-	
+// Route::get('Comment','CommentController@getcomment');
+// Route::post('Comment','CommentController@postcomment');
+// Route::get('/',function(){
 
-	 // $obj=new Recipe;
-	 // $obj->setName('ข้าวผัด');
-	 // $obj->setCategory('ผัด');
-	 // $obj->setStep('ghjkl;ddd');
-	 // $obj->setImage('wertyuio');
-	 // $obj->setUserid('1234');
-	 // $obj->newRecipe();
-
-	 // return 'eiei';
-	
-	// $value=Recipe::getByUserId(1234);
-	// $value=Recipe::getAll();
-	// $size=count($value);
-	// for($i=0;$i<$size;$i++){
-	
-	//   echo $value[$i]->getName();
-	//   echo ("\n");
-	// };
-	
-	// $obj=Recipe::getById(1);
-	// $obj->setName('ปลากระป๋อง');
-	// $obj->editRecipe();
+// 	$obj = new RecipeScore;
+// 	return $obj->calScore(5);
+ Route::get('/',function(){
 
 
-	 
-	 // $obj=new Category;
-	 // $obj->setName('ปิ้ง/ย่าง');
-	 //  $obj->newCategory();
-	 // return 'thida';
 
-	// $obj=new Comment;
-	// $obj->setScore(5);
-	// $obj->setComment('qqqqqqqqqq');
-	// $obj->setRecipeid(5);
-	// $obj->setUserid(1100);
-	// $obj->newComment();
+$obj= new TopRecipe;
 
-	// $obj1=new Comment;
-	// $obj1->setScore(5);
-	// $obj1->setComment('qqfffffffff');
-	// $obj1->setRecipeid(8);
-	// $obj1->setUserid(123);
-	// $obj1->newComment();
-
-	// $obj=Comment::getById(1);
-	// $obj->setComment('aaaaaaaa');
-	// $obj->editComment();
-	// return 'aeiou';
-
-	// $obj=Comment::getByRecipe(5);
-	// $size=count($obj);
-	// for($i=0;$i<$size;$i++){
-	// 	echo $obj[$i]->getComment();
-
-	// }
-
-	// $obj=Comment::getById(2);
-	// $obj->deleteComment();
-
-	// $obj=new User;
-	// $obj->setName('Pure');
-	// $obj->setPassword('123456');
-	// $obj->setEmail('555');
-	// $obj->setImage('eiei');
-	// $obj->newUser();
-	// $obj=User::getById(3);
-	// //var_dump($obj);
-	// $obj->setName('eieiei');
-	// $obj->editUser();
-
-	// $obj=new Ingredient;
-	// $obj->setName('ไข่');
-	// $obj->newIngredient();
-	// return 'H';
-	
-	// $obj=new Recipecompo;
-	// $obj->setIngredientid(1);
-	// $obj->setRecipeid(5);
-	// $obj->newRecipecompo();
-
-	
-
-	$value=Recipecompo::getByIngredientid(1);
-	$size=count($value);
-	for($i=0;$i<$size;$i++){
-	
-	  echo $value[$i]->getRecipeid();
-	  echo ("\n");
-
-	}
-return 'eiei' ;
-
-	
+$obj->setTotalScore(1,7);
+$obj->setTotalScore(2,6);
+$obj->setTotalScore(3,5);
+$obj->setTotalScore(4,4);
+$obj->setTotalScore(5,3);
+$obj->setTotalScore(6,2);
+$obj->setTotalScore(7,1);
 
 
-});
+
+return $obj->getTopRecipe($obj);
+
+//$obj->sortMenu($obj->getTotalScore());
+//  $obj->setTopRecipe($obj);
+//var_dump($obj);
+//return $obj->sortMenu($obj->getTotalScore());
+//$obj->setTopRecipe($obj);
+// $obj->setTotalScore("1");
+//var_dump($obj);
+// $obj->sortMenu($obj->getTotalScore());
+// //var_dump($obj);
+//return $obj->getTotalScore();
+})
+
+// })
+?>

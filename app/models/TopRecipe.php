@@ -1,30 +1,41 @@
 <?php 
 
 	/**
-	* 
+	*
 	*/
 	class TopRecipe 
 	{
-		private $totalScore;
+		private $totalScore=array();
 		private $topRecipe;
-		private $allComment;
-		public function __construct($argument)
-		{
-			//Send comment to here
-			# code...
+		
+
+		public function getTopRecipe($obj){
+			for($i=0;$i<=4;$i++){
+			echo $obj->sortMenu($obj->getTotalScore())[$i];
+			echo "<br/>";
+			}
 		}
 
-		public function getTopRecipe(){
+		// public function getTopRecipe(){
+		// 	// sortMenu();
+		// 	return $this->$TopRecipe;
+		// }
 
-			calculateScore();
-			sortMenu();
-			return $this->topRecipe;
+		public function getTotalScore(){
+			return $this->recipeid;
+		}
+
+		public function setTotalScore($recipeid,$score){
+			$this->recipeid[]=$recipeid;
+			$this->totalScore[]=$score;
+		}
+
+		public function sortMenu($totalScore){
+			rsort($totalScore);
+			return $totalScore;
 		}
 
 
-		public function sortMenu(){
-			//recipescore>>sort>>toprecipe
-		}
 	}
 
 

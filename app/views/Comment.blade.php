@@ -1,122 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>HTML fun</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
-		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Right Recipe</title>
 
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 
+		<style type="text/css">
+			.user-row {
+			    margin-bottom: 14px;
+			}
+			.user-row:last-child {
+			    margin-bottom: 0;
+			}
+			.dropdown-user {
+			    margin: 13px 0;
+			    padding: 5px;
+			    height: 100%;
+			}
+			.dropdown-user:hover {
+			    cursor: pointer;
+			}
+			.table-user-information > tbody > tr {
+			    border-top: 1px solid rgb(221, 221, 221);
+			}
+			.table-user-information > tbody > tr:first-child {
+			    border-top: 0;
+			}
+			.table-user-information > tbody > tr > td {
+			    border-top: 0;
+			}
+			.toppad
+			{margin-top:20px;
+			}
+
+		<style type="text/css">
+		@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+		</style>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 	</head>
-
-
 	<body>
-<!--
-	<div class="container"/>
-		<div class="row"> 
-			<div class="col-md-3 col-xs-6 well "></div>
-			<div class="col-md-3 col-xs-6 well "></div>
-	
-		</div>
+		<div class="container">
+      		<div class="row">
+        		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+         			<div class="panel panel-info">
+            			<div class="panel-heading">
+              				<h3 class="panel-title">Recipe Name</h3>
+            			</div>
+            			<div class="panel-body">
+              				<div class="row">
+                				<div class="panel-body">
+				                  <img src="food.jpg" width="100%" height="100%"/>
+				                </div>
+                			</div>	
 
-		<div class="row"> 
-			<div class="col-md-3 col-xs-4 well "></div>
-			<div class="col-md-3 col-xs-4 well "></div>
-			<div class="col-md-3 col-xs-4 well "></div>
-		</div>
-	</div>
--->
-<div class="container"/>
-	<div class="row" >
-		<div class="panel panel-info">
-			<div class="panel-heading well">Pang Profile</div>
-	<div class="panel-body"> 
+                			<h4>Add by :</h4>
+                			<h4>Rating :</h4>
+                			<h4>Ingredeint :</h4>
+                			<h4>Process :</h4>
+                			<h4>Photo/clip :</h4>
+                    	</div>
+				    </div>
 
-		<div class="col-md-6 "><img src="p.jpg" width="500" height="300"></div> 
-		
+				    <!-- comment -->
+				    <div class="panel panel-info">
+            			<div class="panel-body">
+                			<h4>Comment :</h4>
+                			<h4>Rating :</h4>
+                			<h4>Score :</h4>
+                    	</div>  
+				    </div>
 
-		<div class="col-md-6 ">
+				    <!-- add comment -->
+				    <div class="panel panel-info">
+            			<div class="panel-body">
+                			<h4>Comment :</h4>
+                			 <form action="{{url('Comment')}}" method="POST">
 
-			<div class="row"> 
-				<div  class="col-md-6 col-xs-6  label label-success ">Name</div>
-				<div class="col-md-6 col-xs-6  ">EiEi</div>
+                			 <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <textarea class="form-control" rows="6" name="comment" required></textarea>
+                                </div>
+                            </div><br>
+                			 	<!-- <div>
+                			  	<textarea name="comment" class="form-control" required>
+	                			</textarea> <br></div> -->
+								 <div class="form-actions">
+								 	<span class="pull-right">
+			                            <select name="score" required>
+			        				        <option value"">Rating</option>
+			    					        <option  value"1">1</option>
+			        				        <option  value"2">2</option>
+			        				        <option  value"3">3</option>
+			        				        <option  value"4">4</option>
+			        				        <option  value"5">5</option>
+									    </select>
+										<button type="submit" value="Comment" class="btn btn-primary">Comment</button>
+                       			 	</span>
+                       			</div>
+                        	</form>
+                    	</div>  
+				    </div>
+
+
+				</div>
 			</div>
-
-			<div class="row"> 
-				<div  class="col-md-6 col-xs-6  label label-warning"  >Surname</div>
-				<div class="col-md-6 col-xs-6  ">kiki</div>
-			</div>
-
-			<div class="row"> 
-				<div  class="col-md-6 col-xs-6  label label-warning"  >Age</div>
-				<div class="col-md-6 col-xs-6  ">33</div>
-			</div>
-
-			<div class="row"> 
-				<div  class="col-md-6 col-xs-6  label label-warning"  >Like</div>
-				<div class="col-md-6 col-xs-6  ">dog</div>
-			</div>
-			
-			<div class="row"> 
-				<div  class="col-md-6 col-xs-6  label label-warning"  >Hate</div>
-				<div class="col-md-6 col-xs-6  ">U</div>
-			</div>
-
 		</div>
-
-
-<!--dive table-->
-	
-		<div class="row">
-		<table border="3">
-		<form action="{{url('/')}}" method="POST">
-			<tr>
-				<td width="200" >NAME: </td>
-				<td><input type="text" class="form-control" name="user"></td>
-			</tr>
-			<tr>
-				<td>Comment: </td>
-				<td><input type="text" class="form-control" name="comment"></td>
-			</tr>
-			<tr>
-				<td width="200">feeling </td>
-				<td><input type="radio" name="feeling" value="like"> Like <br>
-		 			<input type="radio" name="feeling" value="hate">Hate<br>
-		 			<input type="radio" name="feeling" value="go to hell">Go to Hell
-		 		</td>
-			</tr>
-			<tr>
-				<td>Submit: </td>
-				<td><input class="btn btn-warning" type="submit"></td>
-			</tr>
-		</form>
-		</table> 
-		</div>
-
-	<!--div show comment-->
-		<div>
-			<h2>Comment</h2>
-			@foreach($comments as $comment)
-			<div>
-				<header>
-					{{$comment->user}} is feeling
-						{{$comment->feeling}}
-					({{$comment->created_at}})
-				</header>
-				<div>{{$comment->comment}}</div>
-			</div>
-			<hr>
-			@endforeach
-		</div>
-	 
-	</div>
-
-		</div>
-
-	
-		
-	
-</div>
-</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
