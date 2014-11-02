@@ -3,7 +3,7 @@
 	class User {
 
 		private $id;
-		private $name;
+		private $username;
 		private $password;
 		private $email;
 		private $image;
@@ -17,12 +17,12 @@
    
     public function getName()
     {
-        return $this->name;
+        return $this->username;
     }
     
     public function setName($name)
     {
-        $this->name = $name;
+        $this->username = $name;
         
     }
 
@@ -65,7 +65,7 @@
 
     public function newUser(){
     	$new=new userEloquent;
-    	$new->name=$this->name;
+    	$new->username=$this->username;
     	$new->password=$this->password;
     	$new->email=$this->email;
     	$new->image=$this->image;
@@ -80,7 +80,7 @@
 
     	$obj=new User;
     	$obj->id=$data->id;
-    	$obj->name=$data->name;
+    	$obj->username=$data->username;
     	$obj->password=$data->password;
     	$obj->email=$data->email;
     	$obj->image=$data->image;
@@ -91,7 +91,7 @@
 
     public function editUser(){
     	$edit=userEloquent::find($this->id);
-    	$edit->name=$this->name;
+    	$edit->username=$this->username;
     	$edit->password=$this->password;
     	$edit->email=$this->email;
     	$edit->image=$this->image;

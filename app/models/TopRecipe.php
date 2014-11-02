@@ -7,13 +7,13 @@
 	{
 		private $totalScore=array();
 		private $topRecipe;
-		
 
 		public function getTopRecipe($obj){
 			for($i=0;$i<=4;$i++){
 			echo $obj->sortMenu($obj->getTotalScore())[$i];
 			echo "<br/>";
 			}
+
 		}
 
 		// public function getTopRecipe(){

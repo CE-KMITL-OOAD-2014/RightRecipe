@@ -1,40 +1,61 @@
 <?php
 
-// Route::get('Comment','CommentController@getcomment');
-// Route::post('Comment','CommentController@postcomment');
-// Route::get('/',function(){
+//Home
+Route::get('/','HomeController@getindex');
 
-// 	$obj = new RecipeScore;
-// 	return $obj->calScore(5);
- Route::get('/',function(){
+//User
+Route::get('/signup','UserController@getsignup');
+Route::post('/signup','UserController@postsignup');
 
+Route::get('/signin','UserController@getsignin');
+Route::post('/signin','UserController@postsignin');
 
+Route::get('/signout','UserController@getsignout');
 
-$obj= new TopRecipe;
-
-$obj->setTotalScore(1,7);
-$obj->setTotalScore(2,6);
-$obj->setTotalScore(3,5);
-$obj->setTotalScore(4,4);
-$obj->setTotalScore(5,3);
-$obj->setTotalScore(6,2);
-$obj->setTotalScore(7,1);
+Route::get('/user/index/{id}','UserController@getindexuser');
+Route::get('/user/edit/{id}','UserController@getedituser');//ยังไม่ได้ทำ
 
 
+//Recipe
+Route::get('/recipe/new',array('before'=>'auth','uses'=>'RecipeController@getnewrecipe'));
+Route::post('/recipe/new','RecipeController@postnewrecipe');
 
-return $obj->getTopRecipe($obj);
+Route::get('/recipe/all','RecipeController@getallrecipe');
+Route::get('/recipe/show/{id}','RecipeController@getshowrecipe');
+Route::get('/recipe/edit/{id}','RecipeController@geteditrecipe');//ยังไม่ได้ทำ
+Route::get('/recipe/top','RecipeController@gettoprecipe');//ยังไม่ได้ทำ
 
-//$obj->sortMenu($obj->getTotalScore());
-//  $obj->setTopRecipe($obj);
-//var_dump($obj);
-//return $obj->sortMenu($obj->getTotalScore());
-//$obj->setTopRecipe($obj);
-// $obj->setTotalScore("1");
-//var_dump($obj);
-// $obj->sortMenu($obj->getTotalScore());
-// //var_dump($obj);
-//return $obj->getTotalScore();
-})
 
-// })
-?>
+//Category
+Route::get('/category/soup','CategoryController@getsoup');
+Route::get('/category/pad','CategoryController@getpad');
+Route::get('/category/fried','CategoryController@getfried');
+Route::get('/category/steam','CategoryController@getsteam');
+Route::get('/category/grill','CategoryController@getgrill');
+Route::get('/category/other','CategoryController@getother');
+
+
+//Search
+Route::get('/search/name/{name}','SearchController@getrecipe');
+Route::get('/search/ingredient/{id}','SearchController@getingredient');
+
+
+
+Route::get('/search',function(){
+		$value=Search::searchByIngre('ถั่ว');
+		var_dump($value);
+});
+
+Route::get('/aa',function(){
+		$obj=new Search;
+		var_dump($obj->searchByCategory(0));
+
+});
+
+
+	// // route to show the login form
+	// Route::get('login', array('uses' => 'HomeController@showLogin'));
+
+	// // route to process the form
+	// Route::post('/ff', array('uses' => 'HomeController@doLogin'));
+

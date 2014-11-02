@@ -4,6 +4,8 @@
         private $name;
         private $id;
         private $category;
+        private $ingredient;
+        private $capacity;
         private $step;
         private $userid;
         private $image;
@@ -24,11 +26,23 @@
             return $this->category;
         }
 
+       
+        public function getIngredient(){
+            
+           
+            return explode(",",$this->ingredient);
+        }
+
+        public function getCapacity(){
+            return explode(",",$this->capacity);
+        }
+
         public function getStep(){
+
             return $this->step;
         }
 
-         public function getUserid(){
+         public function getUserId(){
             return $this->userid;
         }
         
@@ -40,9 +54,15 @@
             $this->name=$value;
         }
         
-        // public function setId($value){
-        //     $this->id=$value;
-        // }
+       
+
+        public function setIngredient($value){
+            $this->ingredient=implode($value,",");
+        }
+
+         public function setCapacity($data){
+            $this->capacity=implode($data,",");
+        }
 
         public function setCategory($value){
             $this->category=$value;
@@ -61,14 +81,18 @@
             $this->image=$value;
         }
 
+        
+
 
 
         public function newRecipe(){
             $new=new recipeEloquent;
             $new->name=$this->name;
             $new->categoryid=$this->category;
+            $new->ingredient= implode($this->getIngredient(),",");
+            $new->capacity=implode($this->getCapacity(),",");
             $new->step=$this->step;
-            $new->userid=$this->userid;
+            $new->userid=Auth::user()->id;
             $new->image=$this->image;
             $new->save();
 
@@ -103,7 +127,9 @@
                 $obj=new Recipe;
                 $obj->id=$data[$i]->id;
                 $obj->name=$data[$i]->name;
-                $obj->categoryid=$data[$i]->category;
+                $obj->category=$data[$i]->categoryid;
+                $obj->ingredient=$data[$i]->ingredient;
+                $obj->capacity=$data[$i]->capacity;
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
@@ -122,7 +148,9 @@
             $obj=new Recipe;
             $obj->id=$data->id;
             $obj->name=$data->name;
-            $obj->categoryid=$data->category;
+            $obj->category=$data->categoryid;
+            $obj->ingredient=$data->ingredient;
+            $obj->capacity=$data->capacity;
             $obj->step=$data->step;
             $obj->userid=$data->userid;
             $obj->image=$data->image;
@@ -132,7 +160,7 @@
         }
 
         public static function getByUserId($userid){
-            $data=recipeEloquent::where('userid','=',$userid)->get();
+            $data=recipeEloquent::where('userid',"=",$userid)->get();
             if($data==NULL){
                 return NULL;
             }   
@@ -145,7 +173,9 @@
                 $obj=new Recipe;
                 $obj->id=$data[$i]->id;
                 $obj->name=$data[$i]->name;
-                $obj->categoryid=$data[$i]->category;
+                $obj->category=$data[$i]->categoryid;
+                $obj->ingredient=$data[$i]->ingredient;
+                $obj->capacity=$data[$i]->capacity;
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
