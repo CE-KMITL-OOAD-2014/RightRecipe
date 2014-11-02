@@ -43,6 +43,16 @@ class UserController extends BaseController
 			return View::make('user.user')->with(array("name"=>$name,"email"=>$email));
 	}
 
+	public function getindexuser()
+	{		$obj1=new User;
+			$obj2=new Recipe;
+			$users=$obj1->getById(Auth::user()->id);
+			$recipe=$obj2->getByUserId(Auth::user()->id);
+			
+			return View::make('user.indexProfile')->with(array("name"=>$users->getName(),"email"=>$users->getEmail(),
+																"recipe"=>$recipe));
+	}
+
 
 
 

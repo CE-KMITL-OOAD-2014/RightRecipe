@@ -15,7 +15,7 @@ implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'user';
+	public $table = 'user';
 
 	/**
 	 * The attributes excluded from the model's JSON form.

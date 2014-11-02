@@ -30,12 +30,12 @@
           </div>
           <div class="navbar-collapse collapse navbar-inverse-collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">เมนูยอดนิยม</a></li>
+              <li class="active"><a href="/recipe/top">เมนูยอดนิยม</a></li>
               
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">หมวดหมู่อาหาร <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">ต้ม</a></li>
+                  <li><a href="/category/soup">ต้ม</a></li>
                   <li><a href="#">ผัด</a></li>
                   <li><a href="#">ทอด</a></li>
                   <li><a href="#">นึ่ง</a></li>
@@ -58,6 +58,7 @@
                 <li><a href="/signup">สมัครสมาชิก</a></li>
                 <li><a href="/signin">Sign in</a></li>
               @else
+                <li><a href="/user/index/{{Auth::user()->id}}">ข้อมูลส่วนตัว</a></li>
                 <li><a href="/signout">Sign out</a></li>
               @endif
             </ul>
@@ -72,4 +73,7 @@
 <!-- Bootstrap JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
 </body>
+<footer>
+@yield('footer')
+</footer>
 </html>

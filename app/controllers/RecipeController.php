@@ -3,13 +3,10 @@ class RecipeController extends BaseController
 {
 	public function getnewrecipe()
 	{
-		return View::make('newRecipe');
+		return View::make('recipe.newRecipe');
 	}
 
-	public function gettestnewrecipe()
-	{
-		return View::make('index');
-	}	
+	
 
 	public function postnewrecipe(){
 
@@ -24,8 +21,27 @@ class RecipeController extends BaseController
 		$obj->setCapacity(Input::get('capacity'));
 		$obj->newRecipe();
 					
-		//	return Response::make('/signin');
+			return Redirect::to('/recipe/all');
 	}
 
+	public function getshowrecipe($id)
+	{		$obj=new Recipe;
+			$show=$obj->getById($id);
+			
+
+		return View::make('recipe.showRecipe')->with(array("name"=>$show->getName(),
+			"ingredient"=>$show->getIngredient(),"capacity"=>$show->getCapacity(),"step"=>$show->getStep()));
+	}	
+
+	public function getallrecipe()
+	{		$obj1=new Recipe;
+			$recipe=$obj1->getAll();
+		return View::make('recipe.allRecipe')->with("recipe",$recipe);
+	}
+
+	public function gettoprecipe()
+	{
+		return View::make('recipe.topRecipe');
+	}
 
 } ?>
