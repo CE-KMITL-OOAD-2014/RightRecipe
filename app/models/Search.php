@@ -13,26 +13,11 @@
 			return $result;
 		}
 
-		public function searchByCategory($value){
+		public static function searchByCategory($value){
 
 			$data=recipeEloquent::where('categoryid','=',$value)->get();
-			$size=count($data);
+			return $data;
 
-            $allrecipe= array( );
-
-             for($i=0;$i<$size;$i++){           
-                 $obj=new Recipe;
-            //     $obj->id=$data[$i]->id;
-                 $obj->setName($data[$i]->getName());
-            //     $obj->categoryid=$data[$i]->category;
-            //     $obj->ingredient=$data[$i]->ingredient;
-            //     $obj->step=$data[$i]->step;
-            //     $obj->userid=$data[$i]->userid;
-            //     $obj->image=$data[$i]->image;
-                 $allrecipe[$i]=$obj;
-             }
-            
-            return $allrecipe;       
 
 		}
 
