@@ -53,6 +53,33 @@ class UserController extends BaseController
 																"recipe"=>$recipe));
 	}
 
+	public function getedituser()
+	{		$obj1=new User;
+			$obj2=new Recipe;
+			$users=$obj1->getById(Auth::user()->id);
+			$recipe=$obj2->getByUserId(Auth::user()->id);
+
+			return View::make('user.editProfile')->with(array("name"=>$users->getName(),"email"=>$users->getEmail(),
+																"recipe"=>$recipe));
+	}
+
+	public function postedituser(){
+				
+				$obj=new User;
+				$user=$obj->getById(Auth::user()->id);
+
+				$user->setName(Input::get("name"));
+
+				$user->setEmail(Input::get("email"));
+				
+				if (Input::get("password")!=NULL) {
+					$user->setPassword(Hash::make(Input::get('password')));
+				}
+				
+				$user->editUser();
+		
+		return Redirect::to('/user/index/'.Auth::user()->id);
+	}
 
 
 

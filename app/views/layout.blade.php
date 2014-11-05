@@ -35,7 +35,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">หมวดหมู่อาหาร <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/category/soup">ต้ม</a></li>
+                  <li><a href="/category/boil">ต้ม</a></li>
                   <li><a href="#">ผัด</a></li>
                   <li><a href="#">ทอด</a></li>
                   <li><a href="#">นึ่ง</a></li>
@@ -69,7 +69,7 @@
     @yield('body')
 </div>
 <!-- jQuery -->
-<script src="//code.jquery.com/jquery.js"></script>
+ <script src="//code.jquery.com/jquery.js"></script> 
 <!-- Bootstrap JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
 </body>

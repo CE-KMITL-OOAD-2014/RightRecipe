@@ -51,7 +51,7 @@
 
 								</div>
 
-							<button type="button" class="btn btn-warning"><but>แก้ไขข้อมูลส่วนต้ว</but></button>
+							<a href="/user/edit/{{Auth::user()->id}}"> <button type="button" class="btn btn-warning"><but>แก้ไขข้อมูลส่วนต้ว</but></button></a>
 						</div>
 				</div>
 
