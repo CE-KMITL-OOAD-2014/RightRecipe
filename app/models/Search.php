@@ -1,15 +1,22 @@
 <?php 
 	class Search{
 
-		public function searchByName($data,$name){
-
+		public function searchByName($name){
+			$recipe=new Recipe;
+			$data=$recipe->getAll();
+			$size=count($data);
 			$result=array();
-
-			for($i=0;$i<$data->length;$i++){
-				//search
-				// $result[$j]= xxxx;
+			$j=0;
+			for($i=0;$i<$size;$i++){
+				
+				if(($data[$i]->getName())==$name){
+					$result[$j]=$data[$i];
+					$j++;
+				}				
 			}
+			
 
+			if(count($result)==0){$result=NULL;}
 			return $result;
 		}
 

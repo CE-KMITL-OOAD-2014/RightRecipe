@@ -59,7 +59,7 @@ class UserController extends BaseController
 			$users=$obj1->getById(Auth::user()->id);
 			$recipe=$obj2->getByUserId(Auth::user()->id);
 
-			return View::make('user.editProfile')->with(array("name"=>$users->getName(),"email"=>$users->getEmail(),
+			return View::make('user.editProfile')->with(array("name"=>$users->getName(),"password"=>$users->getPassword(),"email"=>$users->getEmail(),
 																"recipe"=>$recipe));
 	}
 
@@ -73,7 +73,7 @@ class UserController extends BaseController
 				$user->setEmail(Input::get("email"));
 				
 				if (Input::get("password")!=NULL) {
-					$user->setPassword(Hash::make(Input::get('password')));
+					$user->setPassword(Input::get('password'));
 				}
 				
 				$user->editUser();

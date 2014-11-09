@@ -58,7 +58,7 @@
 						<h3>	Name: </h3>					
 						<input class="form-control input-sm" name="name" value="{{$name}}" id="inputSmall" type="text">
 						<h3>	Password: </h3>
-  												<input class="form-control input-sm" name="password" value="password" id="inputSmall" type="password">
+  												<input class="form-control input-sm" name="password" value="{{$password}}" id="inputSmall" type="password">
 											
 				                       		<h3>	E-mail: </h3>
   												<input class="form-control input-sm" name="email" value="{{$email}}" id="inputSmall" type="text">

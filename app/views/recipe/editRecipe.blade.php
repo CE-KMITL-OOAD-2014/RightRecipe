@@ -1,11 +1,11 @@
 @extends ('layout')
 @section('title')
-<title>RightRecipe::Show Recipe</title>
+<title>RightRecipe::Edit Recipe</title>
 @stop
 @section('body')
 
 
-<form  action="{{url('/recipe/show{id}')}}" method="GET">
+<form  action="{{url('/recipe/edit/{id}')}}" method="POST">
 	<div class="container">
 		<div class="row">
 			<div class=" col-md-6 col-md-offset-3" >
@@ -15,7 +15,7 @@
 					</div>
 					<div class="panel-body">
 						@if (!Auth::guest()) 
-						<a href="/recipe/edit/{id}"> <button type="button" class="btn btn-default">แก้ไขเมนูอาหาร</button></a>					
+						<button type="button" class="btn btn-default">แก้ไขเมนูอาหาร55555555</button>					
 						@endif
 						<div class="row">
 							<div class="panel-body">

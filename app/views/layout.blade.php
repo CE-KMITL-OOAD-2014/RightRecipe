@@ -47,8 +47,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">ค้นหาเมนู <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">ค้นหาจากชื่ออาหาร</a></li>
-                  <li><a href="#">ค้นหาจากวัตถุดิบ</a></li>
+                  <li><a href="/search/name">ค้นหาจากชื่ออาหาร</a></li>
+                  <li><a href="/search/ingredient">ค้นหาจากวัตถุดิบ</a></li>
                </ul>
               </li>
             </ul>
