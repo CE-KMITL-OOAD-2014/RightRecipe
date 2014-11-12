@@ -9,65 +9,49 @@
 		  <p>dfghjklertyuiopnm,.</p>
 		</div>
 	
+
+<?php   
+/*
+for($i=0;$i<count($sortRecipe);i++){
+
+
+
+}*/
+
+?>
+
 			 <div class="row">
+             @for ($i=0; $i <10 ; $i++) 
+             <?php 
+                            $obj1=new Category;
+                            $obj2=new User;
+                            $callRecipe=new Recipe;
+                            $allTop[$i]=$callRecipe->getById($sortRecipe[$i]->getRecipeid());
+                            $cat=$obj1->getById($allTop[$i]->getCategory());
+                            $username=$obj2->getById($allTop[$i]->getUserId());
+                          
+                    ?>
                 
                 <div class="col-sm-4 col-lg-4 col-md-4">
-                <span class="label label-danger">Hot!!</span>
                         <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                                <div class="caption">
-                                    <div class="ratings">
-                                        <p class="pull-right">
+                            <div class="caption">
+                                <div class="ratings">
+                                    <p class="pull-right">
                                             <span class="glyphicon glyphicon-star"></span>
                                             <span class="glyphicon glyphicon-star"></span>
                                             <span class="glyphicon glyphicon-star"></span>
                                             <span class="glyphicon glyphicon-star"></span>
                                             <span class="glyphicon glyphicon-star-empty"></span>
-                                        </p>
-                                    </div>
-                                        <h3><a href="/recipe/show/{1}">Name</a></h3>
-                                        <h5>Category:หมวดหมู่</h5>  
-                                        <h5>Add By:username</h5> 
+                                    </p>
                                 </div>
-                 </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                 <span class="label label-danger">Hot!!</span>
-                        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                                <div class="caption">
-                                    <div class="ratings">
-                                        <p class="pull-right">
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-                                        </p>
-                                    </div>
-                                        <h3><a href="/recipe/show/{1}">Name</a></h3>
-                                        <h5>Category:หมวดหมู่</h5>  
-                                        <h5>Add By:username</h5> 
-                                </div>
-                 </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                 <span class="label label-danger">Hot!!</span>
-                        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                                <div class="caption">
-                                    <div class="ratings">
-                                        <p class="pull-right">
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-                                        </p>
-                                    </div>
-                                        <h3><a href="/recipe/show/{1}">Name</a></h3>
-                                        <h5>Category:หมวดหมู่</h5>  
-                                        <h5>Add By:username</h5> 
-                                </div>
-                 </div>
-        </div>	  
+                            <h3><a href="/recipe/show/{{$allTop[$i]->getId()}}">{{$allTop[$i]->getName()}}</a></h3>
+                            <h5>Score: {{$sortRecipe[$i]->getScore()}}</h5>  
+                            <h5>Category: {{$cat->getName()}}</h5>   
+                            <h5>Add By: {{$username->getName()}}</h5> 
+                            </div>
+                    </div>
+                    @endfor
+            </div>	  
 		
 
 

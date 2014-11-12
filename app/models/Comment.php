@@ -27,7 +27,7 @@ class Comment {
     {
         $this->comment = $comment;
 
-        return $this;
+        // return $this;
     }
 
     
@@ -41,7 +41,7 @@ class Comment {
     {
         $this->time = $time;
 
-        return $this;
+        // return $this;
     }
 
    
@@ -55,7 +55,7 @@ class Comment {
     {
         $this->score = $score;
 
-        return $this;
+        // return $this;
     }
 
    
@@ -69,7 +69,7 @@ class Comment {
     {
         $this->recipeid = $recipeid;
 
-        return $this;
+        // return $this;
     }
 
    
@@ -83,7 +83,7 @@ class Comment {
     {
         $this->userid = $userid;
 
-        return $this;
+        // return $this;
     }
 
 	public function newComment(){
@@ -147,8 +147,28 @@ class Comment {
 		}
 		return $comment;
 	}
-	
 
+    public static function getAll(){
+            $data=commentEloquent::all();
+            $size=count($data);
+
+
+            $comment= array( );
+
+            for($i=0;$i<$size;$i++){           
+                $obj=new Comment;
+                $obj->id=$data[$i]->id;
+                $obj->comment=$data[$i]->comment;
+                $obj->score=$data[$i]->score;
+                $obj->recipeid=$data[$i]->recipeid;
+                $obj->userid=$data[$i]->userid;
+                $obj->time=$data[$i]->time;
+                $comment[$i]=$obj;
+        }
+        return $comment;
+        }
+	
+    
  
    
 }

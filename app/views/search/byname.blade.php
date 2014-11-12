@@ -46,15 +46,17 @@
 				 		 @for ($i=0; $i <count($searchRecipe) ; $i++) 
 				    
 								<?php 	 
-										$obj=new User;
-										$username=$obj->getById($searchRecipe[$i]->getUserId());
+										$obj=new Recipe;
+										$allRecipe=$obj->getById($searchRecipe[$i]);
+										$obj1=new User;
+										$username=$obj1->getById($allRecipe->getUserId());
 								?>
 						
 
 				 				<tbody>
 					    				<tr>
 					      				<td>{{$i+1}}</td>
-					      				<td><a href="/recipe/show/{{$searchRecipe[$i]->getId()}}"> {{$searchRecipe[$i]->getName()}}</a></td>
+					      				<td><a href="/recipe/show/{{$searchRecipe[$i]}}"> {{$allRecipe->getName()}}</a></td>
 					     				 <td>{{$username->getName()}}</td>
 					    				</tr>
 				    			</tbody>

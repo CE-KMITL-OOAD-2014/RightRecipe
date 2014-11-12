@@ -113,9 +113,6 @@
 
         }
 
-
-
-
         public static function getAll(){
             $data=recipeEloquent::all();
             $size=count($data);
@@ -184,6 +181,26 @@
             
             return $recipe;          
             
+        }
+
+        public static function getLasted(){
+            $data=recipeEloquent::where('id',"<>",0)->orderby('id','desc')->get();
+            $size=count($data);
+            $allLast= array( );
+
+            for($i=0;$i<$size;$i++){           
+                $obj=new Recipe;
+                $obj->id=$data[$i]->id;
+                $obj->name=$data[$i]->name;
+                $obj->category=$data[$i]->categoryid;
+                $obj->ingredient=$data[$i]->ingredient;
+                $obj->capacity=$data[$i]->capacity;
+                $obj->step=$data[$i]->step;
+                $obj->userid=$data[$i]->userid;
+                $obj->image=$data[$i]->image;
+                $allLast[$i]=$obj;
+            }
+            return $allLast; 
         }
 
 

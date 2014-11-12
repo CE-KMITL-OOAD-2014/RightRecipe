@@ -36,11 +36,13 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">หมวดหมู่อาหาร <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="/category/boil">ต้ม</a></li>
-                  <li><a href="#">ผัด</a></li>
-                  <li><a href="#">ทอด</a></li>
-                  <li><a href="#">นึ่ง</a></li>
-                  <li><a href="#">ปิ้งย่าง</a></li>
-                  <li><a href="#">อื่นๆ</a></li>
+
+                  <li><a href="/category/pad">ผัด</a></li>
+                  <li><a href="/category/fried">ทอด</a></li>
+                  <li><a href="/category/steam">นึ่ง</a></li>
+                  <li><a href="/category/grill">ปิ้งย่าง</a></li>
+                  <li><a href="/category/other">อื่นๆ</a></li>
+
                 </ul>
               </li>
 

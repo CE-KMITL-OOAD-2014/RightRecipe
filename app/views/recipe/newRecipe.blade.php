@@ -10,7 +10,7 @@
 							<div class="row">
 									<label for="name">Recipe name </label>
 							</div>
-							<input id="name" class="form-control" class="input" name="name" type="text"size="30"required/><br />
+							<input id="name" class="form-control" class="input" name="name" type="text"size="30"required/><br>
 							<div class="form-group">
 								<div class="row">
 							    		<label for="image">Photo:</label>
@@ -22,8 +22,8 @@
 									<label for="category">Category </label>
 									<div class="btn-group">
 										<select class="form-control" name="category">
-											<option name="category" value="2">ต้ม</option>
-											<option name="category" value="1">ผัด</option>
+											<option name="category" value="1">ต้ม</option>
+											<option name="category" value="2">ผัด</option>
 											<option name="category" value="3">ทอด</option>
 											<option name="category" value="4">นึ่ง</option>
 											<option name="category" value="5">ปิ้ง/ย่าง</option>

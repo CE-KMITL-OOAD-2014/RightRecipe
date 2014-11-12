@@ -5,110 +5,153 @@
 @section('body')
 
 
-<form  action="{{url('/recipe/show{id}')}}" method="GET">
-	<div class="container">
+
+<div class="container">
+	<div class=" col-md-6 col-md-offset-3" >
 		<div class="row">
-			<div class=" col-md-6 col-md-offset-3" >
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title">Recipe Name</h3>
+
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Recipe Name</h3>
+				</div>
+				<div class="panel-body">
+					@if (!Auth::guest()) 
+					<a href="/recipe/edit/{id}"> <button type="button" class="btn btn-default">แก้ไขเมนูอาหาร</button></a>					
+					@endif
+					<div class="row">
+						<div class="panel-body">
+							<img src="food.jpg" width="100%" height="100%"/>
+						</div>
 					</div>
-					<div class="panel-body">
-						@if (!Auth::guest()) 
-						<a href="/recipe/edit/{id}"> <button type="button" class="btn btn-default">แก้ไขเมนูอาหาร</button></a>					
-						@endif
-						<div class="row">
-							<div class="panel-body">
-								<img src="food.jpg" width="100%" height="100%"/>
+
+					<!--Name-->
+					<div class="row">
+						<div class="col-md-3">
+							Name:
+						</div>
+						<div class="col-md-9">
+							{{$name}}
+						</div>
+					</div><br>
+
+					<!--Rating-->
+					<div class="row">
+						<div class="col-md-3">
+							Rating:
+						</div>
+						<div class="col-md-9">
+							จุดจุดจุด
+						</div>
+					</div><br>	
+
+
+					<!--Ingredeint-->
+					<div class="row">
+						<div class="col-md-3">
+							Ingredeint:
+						</div>
+						<div class="col-md-9">
+							@for ($i = 0; $i < count($capacity); $i++)
+							<div class="row">
+								<div class="col-md-6">
+									{{$ingredient[$i]}}
+								</div>
+								<div class="col-md-6">
+									{{ $capacity[$i] }}
+								</div>
 							</div>
+
+							@endfor	
+
+						</div>
+					</div><br>
+
+					<!--Process-->
+					<div class="row">
+						<div class="col-md-3">
+							Process:
+						</div>
+						<div class="col-md-9">
+							{{$step}}
+						</div>
+					</div><br>	
+
+					<!--Photo/clip-->
+					<div class="row">
+						<div class="col-md-3">
+							Photo/Clip:
+						</div>
+						<div class="col-md-9">
+							คลิป คลิป 
+						</div>
+					</div><br>
+					<hr>
+
+
+
+
+
+
+					<!--Comment-->	
+					<form action="{{url('/recipe/show/'.$id.'/comment')}}" method="POST">					
+						<div class="row">
+							<label>แสดงความคิดเห็น</label>	
+							<textarea class="form-control" name="comment" id="textArea" required></textarea>
 						</div>
 
-						<!--Name-->
-						<div class="row">
-							<div class="col-md-3">
-								Name:
-							</div>
-							<div class="col-md-9">
-								{{$name}}
-							</div>
-						</div><br>
 
-						<!--Rating-->
-						<div class="row">
-							<div class="col-md-3">
-								Rating:
+						<div class="row">	
+							<div class="col-md-2"> 
+								<h4>	 Rating	</h4>
 							</div>
-							<div class="col-md-9">
-								จุดจุดจุด
-							</div>
-						</div><br>	
+
+							<span class="pull-left col-md-offset-1 col-md-2">
+								<select name="score" class="form-control" id="select">
+									<option name="score" value="0">0</option>
+									<option name="score" value="1">1</option>
+									<option name="score" value="2">2</option>
+									<option name="score" value="3">3</option>
+									<option name="score" value="4">4</option>
+									<option name="score" value="5">5</option>
+								</select>
+
+							</span> 
+							<input type="submit" value="Send" class="btn btn-primary">
+						</div>
 						
+					</form>
 
-						<!--Ingredeint-->
-						<div class="row">
-							<div class="col-md-3">
-								Ingredeint:
-							</div>
-							<div class="col-md-9">
-								@for ($i = 0; $i < count($capacity); $i++)
-								<div class="row">
-									<div class="col-md-6">
-										{{$ingredient[$i]}}
-									</div>
-									<div class="col-md-6">
-										{{ $capacity[$i] }}
-									</div>
-								</div>
 
-								@endfor	
+					<!--show comment-->
+					@foreach ($showComment as  $value) 
+					<?php 
+					$obj=new User;
 
-							</div>
-						</div><br>
+					$username=$obj->getById($value->getUserId());
 
-						<!--Process-->
-						<div class="row">
-							<div class="col-md-3">
-								Process:
-							</div>
-							<div class="col-md-9">
-								{{$step}}
-							</div>
-						</div><br>	
+					?>
 
-						<!--Photo/clip-->
-						<div class="row">
-							<div class="col-md-3">
-								Photo/Clip:
-							</div>
-							<div class="col-md-9">
-								คลิป คลิป 
-							</div>
-						</div><br>
-						
+
+
+					<div class="row">
+						<h4>{{$value->getComment()}}</h4> 
+						<h5>{{"โดย: ". $username->getName()}}</h5>
+
+
 					</div>
+					@endforeach
+
+
 				</div>
 			</div>
 		</div>
-
-
-			<div class="row col-md-6 col-md-offset-3">	
-				<h4>Comment :</h4>
-				<textarea class="form-control" rows="5" ></textarea><br>
-				<span class="pull-right">
-									<select name="sel0">
-										<option value"">Rating</option>
-										<option value"1">1</option>
-										<option value"2">2</option>
-										<option value"3">3</option>
-										<option value"4">4</option>
-										<option value"5">5</option>
-									</select>
-										<a  type="button" class="btn btn-sm btn-danger">comment</a>
-				</span>
-			</div>
-
 	</div>
-</form>
+
+
+
+
+</div>
+
 
 @stop
 

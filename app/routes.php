@@ -26,6 +26,7 @@ Route::get('/recipe/show/{id}','RecipeController@getshowrecipe');
 Route::get('/recipe/edit/{id}','RecipeController@geteditrecipe');//ยังไม่ได้ทำ
 Route::post('/recipe/edit/{id}','RecipeController@posteditrecipe');//ยังไม่ได้ทำ
 Route::get('/recipe/top','RecipeController@gettoprecipe');//ยังไม่ได้ทำ
+Route::post('/recipe/show/{id}/comment','CommentController@postcomment');
 
 
 //Category
@@ -40,19 +41,29 @@ Route::get('/category/other','CategoryController@getother');
 //Search
 Route::get('/search/name','SearchController@getrecipe');
 Route::get('/search/ingredient','SearchController@getingredient');//ยังไม่ได้ทำ
+//Route::post('/search/ingredient','SearchController@postingredient');
 
 
 
 Route::get('/search',function(){
 		$value=new Search;
-		$data=$value->searchByName('ไก่');
-		var_dump($data);
+		$data=$value->searchByIngre('ข้าว,หมู');
+		
 });
 
 Route::get('/aa',function(){
 
-		$obj=new Search;
-		var_dump($obj->searchByCategory(0));
+		$obj=new RecipeScore;
+		$eiei=$obj->getStar(5);
+		echo $eiei;
+
+
+
+		/*$obj=new RecipeScore;
+		$final=$obj->getAllScore();
+		echo "$final";*/
+
+
 
 });
 
@@ -62,3 +73,4 @@ Route::get('/aa',function(){
 
 	// // route to process the form
 	// Route::post('/ff', array('uses' => 'HomeController@doLogin'));
+

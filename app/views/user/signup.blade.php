@@ -29,12 +29,12 @@
       </div>
     </div>
 
-    <!-- <div class="form-group">
+     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Image</label>
       <div class="col-lg-10">
-        <input  id="image" name='image' placeholder="Image" type="file">
+        <input   name='profilePic' placeholder="Image" type="file">
       </div>
-    </div> -->
+    </div> 
 
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">

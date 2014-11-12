@@ -1,59 +1,57 @@
 <?php 
-	class Search{
+class Search{
 
-		public function searchByName($name){
-			$recipe=new Recipe;
-			$data=$recipe->getAll();
-			$size=count($data);
-			$result=array();
-			$j=0;
-			for($i=0;$i<$size;$i++){
-				
-				if(($data[$i]->getName())==$name){
-					$result[$j]=$data[$i];
-					$j++;
-				}				
-			}
-			
+	private $allIngredient;
 
-			if(count($result)==0){$result=NULL;}
-			return $result;
-		}
-
-		public function searchByCategory($value){
-
-			$data=recipeEloquent::where('categoryid','=',$value)->get();
-			$size=count($data);
-
-            $allrecipe= array( );
-
-             for($i=0;$i<$size;$i++){           
-                 $obj=new Recipe;
-            //     $obj->id=$data[$i]->id;
-                 $obj->setName($data[$i]->getName());
-            //     $obj->categoryid=$data[$i]->category;
-            //     $obj->ingredient=$data[$i]->ingredient;
-            //     $obj->step=$data[$i]->step;
-            //     $obj->userid=$data[$i]->userid;
-            //     $obj->image=$data[$i]->image;
-                 $allrecipe[$i]=$obj;
-             }
-            
-            return $allrecipe;       
-
-		}
-
-		public static function searchByIngre($value){
-
-			$data=recipeEloquent::where('ingretext','LIKE',"%".$value."%")->get();
-			$result=array();
-			$size=count($data);
-
-			
-			for ($i=0; $i <$size ; $i++) { 
-				$result[$i]=$data[$i]->id;
-			}
-					return $result;
-
-		}
+	public function getIngredient(){
+		return $this->allIngredient;
 	}
+
+	public function setIngredient($value){
+		$this->allIngredient=explode(",",$this->allIngredient);
+	}
+
+	public function searchByName($name){
+		
+
+		$data=recipeEloquent::where('name','LIKE',"%".$name."%")->get();
+		$result=array();
+		$size=count($data);
+
+		
+		for ($i=0; $i <$size ; $i++) { 
+			$result[$i]=$data[$i]->id;
+		}
+		return $result;
+	}
+
+	public static function searchByCategory($value){
+
+		$data=recipeEloquent::where('categoryid','=',$value)->get();
+		return $data;
+
+
+	}
+
+	public static function searchByIngre($value){
+		$wordIngre=explode(",", $value);
+
+		if(count($wordIngre)<1){
+			return NULL;
+		}
+			$findRecipe=recipeEloquent::where('ingredient','LIKE',"%".$wordIngre[0]."%");
+			for($i=1;$i<count($wordIngre);$i++) {
+				$findRecipe=$findRecipe->where('ingredient','LIKE',"%".$wordIngre[$i]."%");
+			}
+			$findRecipe=$findRecipe->get();
+		
+		$result=array();
+		
+		for ($i=0; $i <count($findRecipe) ; $i++) { 
+			
+				$result[$i]=$findRecipe[$i]->id;
+			}
+		return $result;
+
+	}
+}

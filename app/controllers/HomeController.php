@@ -15,8 +15,9 @@ class HomeController extends BaseController {
 	|
 	*/
 	public function getindex()
-	{
-		return View::make('home.index');
+	{	$obj=new Recipe;
+		$allLast=$obj->getLasted();
+		return View::make('home.index')->with('allLast',$allLast);
 	}
 
 	public function showWelcome()
