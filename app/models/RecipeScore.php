@@ -33,7 +33,7 @@ class RecipeScore{
 		}
 
 		for($i=0;$i<$size;$i++){
-				$result=$result+$data[$i]->score;
+				$result=$result+($data[$i]->score)/$size;
 		}
 	       return $result;
     }

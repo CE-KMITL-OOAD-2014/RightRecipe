@@ -9,6 +9,7 @@
         private $step;
         private $userid;
         private $image;
+        private $video;
 
         public function __constructor(){
 
@@ -50,6 +51,10 @@
             return $this->image;
         }
 
+        public function getVideo(){
+            return $this->video;
+        }
+
         public function setName($value){
             $this->name=$value;
         }
@@ -81,6 +86,9 @@
             $this->image=$value;
         }
 
+        public function setVideo($value){
+            $this->video=$value;
+        }
         
 
 
@@ -94,6 +102,7 @@
             $new->step=$this->step;
             $new->userid=Auth::user()->id;
             $new->image=$this->image;
+            $new->video=$this->video;
             $new->save();
 
         }
@@ -104,6 +113,7 @@
             $edit->categoryid=$this->category;
             $edit->step=$this->step;
             $edit->image=$this->image;
+            $edit->video=$this->video;
             $edit->save();
         }
 
@@ -130,6 +140,7 @@
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
+                $obj->video=$data[$i]->video;
                 $recipe[$i]=$obj;
             }
             
@@ -151,6 +162,7 @@
             $obj->step=$data->step;
             $obj->userid=$data->userid;
             $obj->image=$data->image;
+            $obj->video=$data->video;
 
 
             return $obj;
@@ -176,6 +188,7 @@
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
+                $obj->video=$data[$i]->video;
                 $recipe[$i]=$obj;
             }
             
@@ -198,6 +211,7 @@
                 $obj->step=$data[$i]->step;
                 $obj->userid=$data[$i]->userid;
                 $obj->image=$data[$i]->image;
+                $obj->video=$data[$i]->video;
                 $allLast[$i]=$obj;
             }
             return $allLast; 

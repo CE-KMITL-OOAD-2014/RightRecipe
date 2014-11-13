@@ -5,7 +5,7 @@
 
 @section('body')
   
-<form class="form-horizontal" action="{{url('signup')}}" method="POST">
+<form class="form-horizontal" action="{{url('signup')}}" method="POST" enctype="multipart/form-data">
   <fieldset>
     <legend>สมัครสมาชิก</legend>
     <div class="form-group">
@@ -32,13 +32,13 @@
      <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Image</label>
       <div class="col-lg-10">
-        <input   name='profilePic' placeholder="Image" type="file">
+        <input   name='profileImage' placeholder="Image" type="file">
       </div>
     </div> 
 
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <input type="submit" class="btn btn-primary" value="Register">
       </div>
     </div>
   </fieldset>

@@ -11,11 +11,15 @@ class RecipeController extends BaseController
 		$obj=new Recipe;
 		
 		$obj->setName(Input::get('name'));
-		$obj->setImage(Input::get('image'));
 		$obj->setCategory(Input::get('category'));
 		$obj->setIngredient(Input::get('ingredient'));
 		$obj->setStep(Input::get('step'));
+		$obj->setVideo(Input::get('video'));
 		$obj->setCapacity(Input::get('capacity'));
+		$file=Input::file('recipeImage');
+		$newfile=time().".".$file->guessExtension();
+		$obj->setImage($newfile);
+		$file->move(app_path().'/../public/upload/recipeImage/',$newfile);
 		$obj->newRecipe();
 					
 			return Redirect::to('/recipe/all');
@@ -27,8 +31,17 @@ class RecipeController extends BaseController
 			$obj2=new Comment;
 			$showComment=$obj2->getByRecipe($id);
 
-		return View::make('recipe.showRecipe')->with(array("name"=>$show->getName(),
-			"ingredient"=>$show->getIngredient(),"capacity"=>$show->getCapacity(),"step"=>$show->getStep(),"id"=>$show->getId(),"showComment"=>$showComment));
+		return View::make('recipe.showRecipe')->with(
+			array("name"=>$show->getName(),
+				"ingredient"=>$show->getIngredient(),
+				"capacity"=>$show->getCapacity(),
+				"step"=>$show->getStep(),
+				"id"=>$show->getId(),
+				"image"=>$show->getImage(),
+				"video"=>$show->getVideo(),
+				"showComment"=>$showComment
+				)
+			);
 	}	
 
 	public function getallrecipe()

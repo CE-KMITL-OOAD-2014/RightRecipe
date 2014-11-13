@@ -6,7 +6,7 @@
 	<h1>Add Recipe</h1>
 				<div class ="container"/>
 					<article class="col-xs-12 col-sm-12 col-md-6">
-					 	<form  action="{{url('/recipe/new')}}" method="POST">
+					 	<form  action="{{url('/recipe/new')}}" method="POST" enctype="multipart/form-data">
 							<div class="row">
 									<label for="name">Recipe name </label>
 							</div>
@@ -14,7 +14,7 @@
 							<div class="form-group">
 								<div class="row">
 							    		<label for="image">Photo:</label>
-							    		<input type="file" name="image">
+							    		<input type="file" name="recipeImage" required >
 							  	</div>
 						  	</div>
 
@@ -62,8 +62,9 @@
 							<br>
 
 							<div class="row ">
-								<label for="name">Video URL </label>
-								<input class="form-control" type="text" placeholder="Video URL">
+								<label for="name">Video URL </label><br>Ex: www.youtube.com/watch?v= <b>KbqYMZ5DkEM</b>
+								<input class="form-control" name="video" type="text" placeholder="KbqYMZ5DkEM">
+
 							</div><br>
 
 

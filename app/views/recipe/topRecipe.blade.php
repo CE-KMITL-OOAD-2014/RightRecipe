@@ -10,16 +10,6 @@
 		</div>
 	
 
-<?php   
-/*
-for($i=0;$i<count($sortRecipe);i++){
-
-
-
-}*/
-
-?>
-
 			 <div class="row">
              @for ($i=0; $i <10 ; $i++) 
              <?php 
@@ -29,6 +19,7 @@ for($i=0;$i<count($sortRecipe);i++){
                             $allTop[$i]=$callRecipe->getById($sortRecipe[$i]->getRecipeid());
                             $cat=$obj1->getById($allTop[$i]->getCategory());
                             $username=$obj2->getById($allTop[$i]->getUserId());
+
                           
                     ?>
                 
@@ -37,6 +28,7 @@ for($i=0;$i<count($sortRecipe);i++){
                             <div class="caption">
                                 <div class="ratings">
                                     <p class="pull-right">
+
                                             <span class="glyphicon glyphicon-star"></span>
                                             <span class="glyphicon glyphicon-star"></span>
                                             <span class="glyphicon glyphicon-star"></span>

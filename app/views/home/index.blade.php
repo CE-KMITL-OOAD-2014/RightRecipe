@@ -43,7 +43,7 @@
     ?>
     <div class="col-sm-4 col-lg-4 col-md-4">
         <span class="label label-danger">New!!</span>
-        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+        <img class="img-responsive" src="/upload/recipeImage/{{$allLast[$i]->getImage()}}" alt="" style="max-height:300px  ">
         <div class="caption">
             <div class="ratings">
                 <p class="pull-right">

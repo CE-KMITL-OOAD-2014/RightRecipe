@@ -20,7 +20,7 @@
 					@endif
 					<div class="row">
 						<div class="panel-body">
-							<img src="food.jpg" width="100%" height="100%"/>
+							<img src="/upload/recipeImage/{{$image}}"style="max-height:400px ">
 						</div>
 					</div>
 
@@ -80,9 +80,9 @@
 					<div class="row">
 						<div class="col-md-3">
 							Photo/Clip:
-						</div>
+						</div><br>
 						<div class="col-md-9">
-							คลิป คลิป 
+							<iframe width="525" height="315" src="//www.youtube.com/embed/{{$video}}" frameborder="0" allowfullscreen></iframe>
 						</div>
 					</div><br>
 					<hr>
@@ -93,6 +93,7 @@
 
 
 					<!--Comment-->	
+					@if(!Auth::guest())
 					<form action="{{url('/recipe/show/'.$id.'/comment')}}" method="POST">					
 						<div class="row">
 							<label>แสดงความคิดเห็น</label>	
@@ -120,7 +121,10 @@
 						</div>
 						
 					</form>
-
+					@else 
+						<label>แสดงความคิดเห็น</label> 
+						กรุณา <a href="/signin"> sign in</a>
+					@endif
 
 					<!--show comment-->
 					@foreach ($showComment as  $value) 
