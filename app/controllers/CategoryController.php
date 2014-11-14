@@ -16,7 +16,7 @@
 				elseif($name=="fried"){
 					$id=3;
 				}
-				elseif($name=="stream"){
+				elseif($name=="steam"){
 					$id=4;
 				}
 				elseif($name=="grill"){
@@ -28,10 +28,20 @@
 				$obj=new Search;
 				$cate=$obj->searchByCategory($id);
 				$obj1=new Category;
-				$catName=$obj1->getById($id);
-				//$name=$catName->getName();
-				//$catName=$obj1->getById($cate[$id]->categoryid);
-			return View::make('category.formCategory')->with(array("arrCategory"=>$cate,"title"=>"หมวดหมู่"));
+				$obj1=$obj1->getById($id);
+				$catName=$obj1->getName();
+				$obj2=new RecipeScore;
+				$star=array();
+				for ($i=0; $i <count($cate) ; $i++) { 
+					$star[$i]=$obj2->getStar($cate[$i]->id);
+				}
+
+				
+				
+			return View::make('category.formCategory')->with(
+				array("arrCategory"=>$cate,
+					"title"=>$catName,
+					"star"=>$star));
 			}
 
 

@@ -31,11 +31,6 @@ Route::post('/recipe/show/{id}/comment','CommentController@postcomment');
 
 //Category
 Route::get('/category/{id}','CategoryController@getNormal');
-// Route::get('/category/pad','CategoryController@getpad');
-// Route::get('/category/fried','CategoryController@getfried');
-// Route::get('/category/steam','CategoryController@getsteam');
-// Route::get('/category/grill','CategoryController@getgrill');
-// Route::get('/category/other','CategoryController@getother');
 
 
 //Search
@@ -51,29 +46,7 @@ Route::get('/search',function(){
 		
 });
 
-Route::get('/aa',function(){
-
-		$obj=new RecipeScore;
-		
-		$eiei=$obj->getStar(4);
-		echo $eiei;
-		
-
-	
-
-
-		/*$obj=new RecipeScore;
-		$final=$obj->getAllScore();
-		echo "$final";*/
 
 
 
-});
-
-
-	// // route to show the login form
-	// Route::get('login', array('uses' => 'HomeController@showLogin'));
-
-	// // route to process the form
-	// Route::post('/ff', array('uses' => 'HomeController@doLogin'));
 

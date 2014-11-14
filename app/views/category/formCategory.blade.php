@@ -5,8 +5,8 @@
 @section('body')
     
         <div class="jumbotron">
-            <h2>{{$title}}</h2>
-            <p>dfghjklertyuiopnm,.</p>
+            <h1>{{$title}}</h1>
+            
         </div>
 
                 <div class="row">
@@ -23,11 +23,15 @@
                             <div class="caption">
                                 <div class="ratings">
                                     <p class="pull-right">
+                                            @for($j=1;$j<=5;$j++)
+                                   
+                                        @if($j<=$star[$i]->getScore())
                                             <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                            @else 
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                        @endif
+
+                                     @endfor
                                     </p>
                                 </div>
                             <h3><a href="/recipe/show/{{$arrCategory[$i]->id}}">{{$arrCategory[$i]->name}}</a></h3>
