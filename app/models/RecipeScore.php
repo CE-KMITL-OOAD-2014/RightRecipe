@@ -33,7 +33,7 @@ class RecipeScore{
 		}
 
 		for($i=0;$i<$size;$i++){
-				$result=$result+$data[$i]->score;
+				$result=$result+($data[$i]->score)/$size;
 		}
 	       return $result;
     }
@@ -77,11 +77,7 @@ class RecipeScore{
             return $allScore; 
      }
 
-     public function getStar($recipeid){
-            $data=commentEloquent::where('recipeid','=',$recipeid)->get();
-            $star=($this->calScore($recipeid))/count($data);
-            return $star;
-     }
+     
 
 
 }

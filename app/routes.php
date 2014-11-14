@@ -30,12 +30,12 @@ Route::post('/recipe/show/{id}/comment','CommentController@postcomment');
 
 
 //Category
-Route::get('/category/boil','CategoryController@getboil');
-Route::get('/category/pad','CategoryController@getpad');
-Route::get('/category/fried','CategoryController@getfried');
-Route::get('/category/steam','CategoryController@getsteam');
-Route::get('/category/grill','CategoryController@getgrill');
-Route::get('/category/other','CategoryController@getother');
+Route::get('/category/{id}','CategoryController@getNormal');
+// Route::get('/category/pad','CategoryController@getpad');
+// Route::get('/category/fried','CategoryController@getfried');
+// Route::get('/category/steam','CategoryController@getsteam');
+// Route::get('/category/grill','CategoryController@getgrill');
+// Route::get('/category/other','CategoryController@getother');
 
 
 //Search
@@ -54,9 +54,12 @@ Route::get('/search',function(){
 Route::get('/aa',function(){
 
 		$obj=new RecipeScore;
-		$eiei=$obj->getStar(5);
+		
+		$eiei=$obj->getStar(4);
 		echo $eiei;
+		
 
+	
 
 
 		/*$obj=new RecipeScore;

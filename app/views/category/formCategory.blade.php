@@ -5,17 +5,17 @@
 @section('body')
     
         <div class="jumbotron">
-            <h2>ต้ม</h2>
+            <h2>{{$title}}</h2>
             <p>dfghjklertyuiopnm,.</p>
         </div>
 
                 <div class="row">
-                @for ($i=0; $i <count($boil) ; $i++) 
+                @for ($i=0; $i <count($arrCategory) ; $i++) 
 
                    <?php    $obj1=new Category;
                             $obj2=new User;
-                            $cat=$obj1->getById($boil[$i]->categoryid);
-                            $username=$obj2->getById($boil[$i]->userid); 
+                            $cat=$obj1->getById($arrCategory[$i]->categoryid);
+                            $username=$obj2->getById($arrCategory[$i]->userid); 
                           
                     ?>
                     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -30,7 +30,7 @@
                                             <span class="glyphicon glyphicon-star-empty"></span>
                                     </p>
                                 </div>
-                            <h3><a href="/recipe/show/{{$boil[$i]->id}}">{{$boil[$i]->name}}</a></h3>
+                            <h3><a href="/recipe/show/{{$arrCategory[$i]->id}}">{{$arrCategory[$i]->name}}</a></h3>
                             <h5>Category: {{$cat->getName()}} </h5>   
                             <h5>Add By: {{$username->getName()}} </h5> 
                             </div>
