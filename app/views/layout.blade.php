@@ -70,7 +70,7 @@
     @yield('body')
 </div>
 <!-- jQuery -->
- <script src="//code.jquery.com/jquery.js"></script> 
+ <script src="/js/jquery-1.11.1.min.js"></script> 
 <!-- Bootstrap JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
 </body>

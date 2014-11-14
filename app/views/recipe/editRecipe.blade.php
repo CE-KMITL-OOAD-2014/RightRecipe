@@ -4,8 +4,57 @@
 @stop
 @section('body')
 
+	<script>
+			        $(document).ready(function(){
+			        	$("#image").hide();
+			        	$("#edit").click(function(){
+			                $("#image").show();
+			            });
+			            $("#save").click(function(){
+			                $("#image").hide();
+			          	});
 
-<form  action="{{url('/recipe/edit/{id}')}}" method="POST">
+
+			            $("#editName").hide();
+			            $("#edit").click(function(){
+			                $("p").hide();
+			                $("#editName").show();
+			            });
+			            $("#save").click(function(){
+			                $("p").show();
+			                $("#editName").hide();
+			         	 });
+
+			            $("#editProcess").hide();
+			            $("#edit").click(function(){
+			                $("p").hide();
+			                $("#editProcess").show();
+			            });
+			            $("#save").click(function(){
+			                $("p").show();
+			                $("#editProcess").hide();
+			         	 });
+
+			            $("#editVideo").hide();
+			            $("#edit").click(function(){
+			                $("p").hide();
+			                $("#editVideo").show();
+			            });
+			            $("#save").click(function(){
+			                $("p").show();
+			                $("#editVideo").hide();
+			         	 });
+
+			            //ingredient capacity
+
+			   
+
+			        });
+			    </script>
+
+
+
+<form  action="{{url('/recipe/edit/'.$id)}}" method="POST" enctype="multipart/form-data">
 	<div class="container">
 		<div class="row">
 			<div class=" col-md-6 col-md-offset-3" >
@@ -15,33 +64,80 @@
 					</div>
 					<div class="panel-body">
 						@if (!Auth::guest()) 
-						<button type="button" class="btn btn-default">แก้ไขเมนูอาหาร55555555</button>					
+						<input type="submit" class="btn btn-success " value="save">				
 						@endif
 						<div class="row">
 							<div class="panel-body">
-								<img src="food.jpg" width="100%" height="100%"/>
+								<img src="/upload/recipeImage/{{$image}}"style=" max-width:535px" >
 							</div>
 						</div>
 
 						<!--Name-->
+					<div class="row">
+						<div class="col-md-3">
+							Name:
+						</div>
+						<div class="col-md-3">
+							<input class="form-control input-sm" name="name" value="{{$name}}" id="inputSmall" type="text">
+						</div>
+						<div class="col-md-offset-1 col-md-2">
+							Rating:
+						</div>
+						<div class="col-md-3">
+							<div class="ratings">
+								<p class="pull-left">
+									@for ($i=1; $i <=5 ; $i++) 
+									@if($i<=$star)
+									<span class="glyphicon glyphicon-star"></span>
+									@else
+									<span class="glyphicon glyphicon-star-empty"></span>
+									@endif
+									@endfor
+								</p>
+							</div>
+						</div>
+					</div>
+
+
+						<!--Add By-->
 						<div class="row">
 							<div class="col-md-3">
-								Name:
+								Add By:
 							</div>
 							<div class="col-md-9">
-								{{$name}}
+							{{$username}}
 							</div>
 						</div><br>
 
-						<!--Rating-->
-						<div class="row">
+						
+						<!--Image-->
+						 <div class="row">
 							<div class="col-md-3">
-								Rating:
+								Photo:
 							</div>
 							<div class="col-md-9">
-								จุดจุดจุด
+							<input type="file" name="image" value="{{$image}}"  >
 							</div>
-						</div><br>	
+						</div><br>
+
+
+						<!--Category-->
+					<div class="row">
+						<div class="col-md-3">
+							Category:
+						</div>
+						<div class="col-md-9 btn-group">
+										<select class="form-control" name="category">
+											<option name="category" value="0">หมวดหมู่</option>
+											<option name="category" value="1">ต้ม</option>
+											<option name="category" value="2">ผัด</option>
+											<option name="category" value="3">ทอด</option>
+											<option name="category" value="4">นึ่ง</option>
+											<option name="category" value="5">ปิ้ง/ย่าง</option>
+											<option name="category" value="6">อื่นๆ</option>
+										</select>
+						</div>
+					</div><br>	
 						
 
 						<!--Ingredeint-->
@@ -53,10 +149,11 @@
 								@for ($i = 0; $i < count($capacity); $i++)
 								<div class="row">
 									<div class="col-md-6">
-										{{$ingredient[$i]}}
+										<input name="ingredient[]" type="text" class="form-control" value="{{$ingredient[$i]}}" placeholder="ชื่อวัตถุดิบที่{{$i}}">
 									</div>
 									<div class="col-md-6">
-										{{ $capacity[$i] }}
+										<input name="ingredient[]" type="text" class="form-control" value="{{ $capacity[$i] }}" placeholder="ปริมาตร">
+										
 									</div>
 								</div>
 
@@ -71,7 +168,7 @@
 								Process:
 							</div>
 							<div class="col-md-9">
-								{{$step}}
+								<input class="form-control input-sm" name="step" value="{{$step}}" id="inputSmall" type="text">
 							</div>
 						</div><br>	
 
@@ -81,7 +178,9 @@
 								Photo/Clip:
 							</div>
 							<div class="col-md-9">
-								คลิป คลิป 
+								
+								<input class="form-control input-sm" name="video" value="{{$video}}" id="inputSmall" type="text">
+								Ex: www.youtube.com/watch?v= <b>KbqYMZ5DkEM</b>
 							</div>
 						</div><br>
 						
@@ -91,21 +190,7 @@
 		</div>
 
 
-			<div class="row col-md-6 col-md-offset-3">	
-				<h4>Comment :</h4>
-				<textarea class="form-control" rows="5" ></textarea><br>
-				<span class="pull-right">
-									<select name="sel0">
-										<option value"">Rating</option>
-										<option value"1">1</option>
-										<option value"2">2</option>
-										<option value"3">3</option>
-										<option value"4">4</option>
-										<option value"5">5</option>
-									</select>
-										<a  type="button" class="btn btn-sm btn-danger">comment</a>
-				</span>
-			</div>
+			
 
 	</div>
 </form>

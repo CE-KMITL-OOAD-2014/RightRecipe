@@ -23,8 +23,8 @@ Route::post('/recipe/new','RecipeController@postnewrecipe');
 
 Route::get('/recipe/all','RecipeController@getallrecipe');
 Route::get('/recipe/show/{id}','RecipeController@getshowrecipe');
-Route::get('/recipe/edit/{id}','RecipeController@geteditrecipe');//ยังไม่ได้ทำ
-Route::post('/recipe/edit/{id}','RecipeController@posteditrecipe');//ยังไม่ได้ทำ
+Route::get('/recipe/edit/{id}','RecipeController@geteditrecipe');
+Route::post('/recipe/edit/{id}','RecipeController@posteditrecipe');
 Route::get('/recipe/top','RecipeController@gettoprecipe');//ยังไม่ได้ทำ
 Route::post('/recipe/show/{id}/comment','CommentController@postcomment');
 

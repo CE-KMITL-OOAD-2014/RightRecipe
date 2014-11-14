@@ -12,6 +12,12 @@ class UserController extends BaseController
 		$user->setName(Input::get('username'));
 		$user->setPassword(Hash::make(Input::get('password')));
 		$user->setEmail(Input::get('email'));
+		$file=Input::file('profileImage');
+		$newfile=time().".".$file->guessExtension();
+		
+		$user->setImage($newfile);
+		$file->move(app_path().'/../public/upload/profileImage/',$newfile);
+		
 		$user->newUser();
 		return Redirect::to('signin');
 	}
@@ -49,8 +55,12 @@ class UserController extends BaseController
 			$users=$obj1->getById(Auth::user()->id);
 			$recipe=$obj2->getByUserId(Auth::user()->id);
 			
-			return View::make('user.indexProfile')->with(array("name"=>$users->getName(),"email"=>$users->getEmail(),
-																"recipe"=>$recipe));
+			return View::make('user.indexProfile')->with(
+				array("name"=>$users->getName(),
+					  "email"=>$users->getEmail(),
+					  "image"=>$users->getImage(),
+					  "recipe"=>$recipe)
+				);
 	}
 
 	public function getedituser()

@@ -77,8 +77,16 @@ class RecipeScore{
             return $allScore; 
      }
 
-     
-
+     public function getStar($recipeid){
+            $data=recipeScoreEloquent::where('recipeid',"=",$recipeid)->get();
+            if($data==NULL){
+                return NULL;
+            } 
+                $star=new RecipeScore;
+                $star->score=$data[0]->score;
+                $star->recipeid=$data[0]->recipeid;
+            return $star;
+     }
 
 }
 
