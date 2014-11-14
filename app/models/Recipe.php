@@ -108,7 +108,7 @@
         }
 
         public function editRecipe(){
-            $edit=recipeEloquent::find($this->$id);
+            $edit=recipeEloquent::find($this->id);
             $edit->name=$this->name;
             $edit->categoryid=$this->category;
             $edit->step=$this->step;
@@ -163,6 +163,7 @@
             $obj->userid=$data->userid;
             $obj->image=$data->image;
             $obj->video=$data->video;
+
 
 
             return $obj;

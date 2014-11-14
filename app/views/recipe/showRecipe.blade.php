@@ -15,12 +15,15 @@
 					<h3 class="panel-title">Recipe Name</h3>
 				</div>
 				<div class="panel-body">
-					@if (!Auth::guest()) 
-					<a href="/recipe/edit/{id}"> <button type="button" class="btn btn-default">แก้ไขเมนูอาหาร</button></a>					
+					@if(!Auth::guest())
+					@if (Auth::user()->id==$userid) 
+					<a href="/recipe/edit/{{$id}}"> <button type="button" class="btn btn-default">แก้ไขเมนูอาหาร</button></a>		
+
+					@endif
 					@endif
 					<div class="row">
 						<div class="panel-body">
-							<img src="/upload/recipeImage/{{$image}}"style="max-height:400px ">
+							<img src="/upload/recipeImage/{{$image}}"style=" max-width:535px" >
 						</div>
 					</div>
 
@@ -29,18 +32,45 @@
 						<div class="col-md-3">
 							Name:
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-3">
 							{{$name}}
+						</div>
+						<div class="col-md-offset-1 col-md-2">
+							Rating:
+						</div>
+						<div class="col-md-3">
+							<div class="ratings">
+								<p class="pull-left">
+									@for ($i=1; $i <=5 ; $i++) 
+									@if($i<=$star)
+									<span class="glyphicon glyphicon-star"></span>
+									@else
+									<span class="glyphicon glyphicon-star-empty"></span>
+									@endif
+									@endfor
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!--Add By-->
+					<div class="row">
+						<div class="col-md-3">
+							Add By:
+						</div>
+						<div class="col-md-9">
+							{{$username}}
 						</div>
 					</div><br>
 
-					<!--Rating-->
+
+					<!--Category-->
 					<div class="row">
 						<div class="col-md-3">
-							Rating:
+							Category:
 						</div>
 						<div class="col-md-9">
-							จุดจุดจุด
+							{{$category}}
 						</div>
 					</div><br>	
 
@@ -76,20 +106,18 @@
 						</div>
 					</div><br>	
 
+					@if($video!=NULL)
 					<!--Photo/clip-->
 					<div class="row">
 						<div class="col-md-3">
 							Photo/Clip:
 						</div><br>
 						<div class="col-md-9">
-							<iframe width="525" height="315" src="//www.youtube.com/embed/{{$video}}" frameborder="0" allowfullscreen></iframe>
+							<iframe width="535" height="315" src="//www.youtube.com/embed/{{$video}}" frameborder="0" allowfullscreen></iframe>
 						</div>
 					</div><br>
 					<hr>
-
-
-
-
+					@endif
 
 
 					<!--Comment-->	
@@ -122,8 +150,8 @@
 						
 					</form>
 					@else 
-						<label>แสดงความคิดเห็น</label> 
-						กรุณา <a href="/signin"> sign in</a>
+					<label>แสดงความคิดเห็น</label> 
+					กรุณา <a href="/signin"> sign in</a>
 					@endif
 
 					<!--show comment-->

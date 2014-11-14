@@ -78,8 +78,13 @@ class RecipeScore{
      }
 
      public function getStar($recipeid){
-            $data=commentEloquent::where('recipeid','=',$recipeid)->get();
-            $star=($this->calScore($recipeid))/count($data);
+            $data=recipeScoreEloquent::where('recipeid',"=",$recipeid)->get();
+            if($data==NULL){
+                return NULL;
+            } 
+                $star=new RecipeScore;
+                $star->score=$data[0]->score;
+                $star->recipeid=$data[0]->recipeid;
             return $star;
      }
 
