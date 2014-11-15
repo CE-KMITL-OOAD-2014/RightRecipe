@@ -38,6 +38,9 @@
     $obj2=new User;
     $cat=$obj1->getById($allLast[$i]->getCategory());
     $username=$obj2->getById($allLast[$i]->getUserId());
+    $score=new RecipeScore;
+    $star=$score->getStar($allLast[$i]->getId());
+
 
     
     ?>
@@ -47,11 +50,13 @@
         <div class="caption">
             <div class="ratings">
                 <p class="pull-right">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                @for($j=1;$j<=5;$j++)
+                @if($j<$star->getScore())
+                <span class="glyphicon glyphicon-star"></span>
+                @else 
+                <span class="glyphicon glyphicon-star-empty"></span>
+                @endif
+                @endfor
                 </p>
             </div>
             <h3><a href="/recipe/show/{{$allLast[$i]->getId()}}">{{$allLast[$i]->getName()}}</a></h3>
