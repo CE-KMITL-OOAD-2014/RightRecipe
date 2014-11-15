@@ -69,8 +69,11 @@ class UserController extends BaseController
 			$users=$obj1->getById(Auth::user()->id);
 			$recipe=$obj2->getByUserId(Auth::user()->id);
 
-			return View::make('user.editProfile')->with(array("name"=>$users->getName(),"password"=>$users->getPassword(),"email"=>$users->getEmail(),
-																"recipe"=>$recipe));
+			return View::make('user.editProfile')->with(
+				array("name"=>$users->getName(),
+					"email"=>$users->getEmail(),
+					"image"=>$users->getImage(),
+					"recipe"=>$recipe));
 	}
 
 	public function postedituser(){
@@ -85,6 +88,12 @@ class UserController extends BaseController
 				if (Input::get("password")!=NULL) {
 					$user->setPassword(Input::get('password'));
 				}
+
+				$file=Input::file('image');
+			if($file!=NULL){$newfile=time().".".$file->guessExtension();
+			$user->setImage($newfile);
+			$file->move(app_path().'/../public/upload/profileImage/',$newfile);
+			}
 				
 				$user->editUser();
 		

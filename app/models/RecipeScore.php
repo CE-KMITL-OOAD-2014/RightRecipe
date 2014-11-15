@@ -82,12 +82,15 @@ class RecipeScore{
             if($data==NULL){
                 return NULL;
             } 
-                $star=new RecipeScore;
-                $star->score=$data[0]->score;
-                $star->recipeid=$data[0]->recipeid;
-            return $star;
-     }
 
+                $star=new RecipeScore;
+                foreach ($data as $value) {
+                    $star->score=$value->score;
+                    $star->recipeid=$value->recipeid;
+                     return $star;
+                }
+               
+     }
 
 }
 

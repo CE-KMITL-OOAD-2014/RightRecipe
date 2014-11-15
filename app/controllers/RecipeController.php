@@ -26,16 +26,16 @@ class RecipeController extends BaseController
 	}
 
 	public function getshowrecipe($id)
-	{		$obj1=new Recipe;
-			$show=$obj1->getById($id);
-			$obj2=new Comment;
-			$showComment=$obj2->getByRecipe($id);
-			$obj3=new Category;
-			$showCategoey=$obj3->getById($show->getCategory());
+	{		//$obj1=new Recipe;
+			$show=Recipe::getById($id);
+			//$obj2=new Comment;
+			$showComment=Comment::getByRecipe($id);
+			//$obj3=new Category;
+			$showCategoey=Category::getById($show->getCategory());
 			$showStar=new RecipeScore;
 			$star=$showStar->getStar($id);
-			$obj4=new User;
-			$username=$obj4->getById($show->getUserId());
+			//$obj4=new User;
+			$username=User::getById($show->getUserId());
 
 		return View::make('recipe.showRecipe')->with(
 			array("id"=>$show->getId(),
@@ -56,17 +56,17 @@ class RecipeController extends BaseController
 	}	
 
 	public function getallrecipe()
-	{		$obj1=new Recipe;
-			$recipe=$obj1->getAll();
+	{		//$obj1=new Recipe;
+			$recipe=Recipe::getAll();
 		return View::make('recipe.allRecipe')->with("recipe",$recipe);
 	}
 
 	public function geteditrecipe($id)
-	{		$obj=new Recipe;
-			$recipe=$obj->getById($id);
+	{		//$obj=new Recipe;
+			$recipe=Recipe::getById($id);
 			$obj1=new Category;
-			$obj2=new User;
-			$username=$obj2->getById($recipe->getUserId());
+			//$obj2=new User;
+			$username=User::getById($recipe->getUserId());
 			$showStar=new RecipeScore;
 			$star=$showStar->getStar($id);
 		return View::make('recipe.editRecipe')->with(
@@ -86,8 +86,8 @@ class RecipeController extends BaseController
 
 	public function posteditrecipe($id)
 	{
-			$obj=new Recipe;
-			$edit=$obj->getById($id);
+			//$obj=new Recipe;
+			$edit=Recipe::getById($id);
 			$edit->setName(Input::get('name'));
 			$mode=Input::get('category');
 			if($mode!=0){$edit->setCategory($mode);}

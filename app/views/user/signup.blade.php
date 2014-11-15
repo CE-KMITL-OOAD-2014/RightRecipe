@@ -11,28 +11,28 @@
     <div class="form-group">
       <label for="inputUsername" class="col-lg-2 control-label">Username</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputUsername" name='username' placeholder="username" type="text">
+        <input class="form-control" id="inputUsername" name='username' placeholder="username" type="text" required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputEmail" name='email' placeholder="Email" type="text">
+        <input class="form-control" id="inputEmail" name='email' placeholder="Email" type="text" required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Password</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputPassword" name='password' placeholder="Password" type="password">
+        <input class="form-control" id="inputPassword" name='password' placeholder="Password" type="password" required>
       </div>
     </div>
 
      <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Image</label>
       <div class="col-lg-10">
-        <input   name='profileImage' placeholder="Image" type="file">
+        <input   name='profileImage' placeholder="Image" type="file" required>
       </div>
     </div> 
 

@@ -13,21 +13,26 @@
 						  	$cat=$obj1->getById($recipe[$i]->getCategory());
 						  	$username=$obj2->getById($recipe[$i]->getUserId());
 						  	$score=new RecipeScore;
-    						$star=$score->getStar($allLast[$i]->getId());
-						  
+    						$star=$score->getStar($recipe[$i]->getId());
+    						
+
 					?>
 					<div class="col-sm-4 col-lg-4 col-md-4">
-						<img class="img-responsive" src="http://placehold.it/700x400" alt="">
+						<img class="img-responsive" src="/upload/recipeImage/{{$recipe[$i]->getImage()}}" alt="" style="max-height:200px  ">
 							<div class="caption">
 								<div class="ratings">
 									<p class="pull-right">
-										@for($j=1;$j<=5;$j++)
-						                @if($j<=$star->getScore())
-						                <span class="glyphicon glyphicon-star"></span>
-						                @else 
-						                <span class="glyphicon glyphicon-star-empty"></span>
-						                @endif
-						                @endfor
+										 @for($j=1;$j<=5;$j++)
+                    @if($star==NULL)
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                    
+                    @elseif($j<=$star->getScore())
+                                   <span class="glyphicon glyphicon-star"></span>
+                                    @else 
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                    @endif
+                
+                @endfor
 									</p>
 								</div>
 							<h3><a href="/recipe/show/{{$recipe[$i]->getId()}}">{{$recipe[$i]->getName()}}</a></h3>
@@ -40,19 +45,3 @@
 
 @stop
 
-@section('footer')
-
-		<div class="row text-center">
-			<div class="col-lg-12">
-				<ul class="pagination " >
-				  <li class="disabled"><a href="#">«</a></li>
-				  <li class="active"><a href="#">1</a></li>
-				  <li><a href="#">2</a></li>
-				  <li><a href="#">3</a></li>
-				  <li><a href="#">4</a></li>
-				  <li><a href="#">5</a></li>
-				  <li><a href="#">»</a></li>
-				</ul>
-			</div>
-		</div>
-@stop
