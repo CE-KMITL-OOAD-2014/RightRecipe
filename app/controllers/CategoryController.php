@@ -37,7 +37,6 @@
 				}
 
 				
-				
 			return View::make('category.formCategory')->with(
 				array("arrCategory"=>$cate,
 					"title"=>$catName,
