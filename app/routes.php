@@ -25,7 +25,7 @@ Route::get('/recipe/all','RecipeController@getallrecipe');
 Route::get('/recipe/show/{id}','RecipeController@getshowrecipe');
 Route::get('/recipe/edit/{id}','RecipeController@geteditrecipe');
 Route::post('/recipe/edit/{id}','RecipeController@posteditrecipe');
-Route::get('/recipe/top','RecipeController@gettoprecipe');//ยังไม่ได้ทำ
+Route::get('/recipe/top','RecipeController@gettoprecipe');
 Route::post('/recipe/show/{id}/comment','CommentController@postcomment');
 
 
@@ -35,16 +35,9 @@ Route::get('/category/{id}','CategoryController@getNormal');
 
 //Search
 Route::get('/search/name','SearchController@getrecipe');
-Route::get('/search/ingredient','SearchController@getingredient');//ยังไม่ได้ทำ
-//Route::post('/search/ingredient','SearchController@postingredient');
+Route::get('/search/ingredient','SearchController@getingredient');
 
 
-
-Route::get('/search',function(){
-		$value=new Search;
-		$data=$value->searchByIngre('ข้าว,หมู');
-		
-});
 
 
 

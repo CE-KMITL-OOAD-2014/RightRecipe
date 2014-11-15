@@ -11,6 +11,8 @@ class CommentController extends BaseController
 			$obj2->setUserid(Auth::user()->id);
 			$obj2->setRecipeid($id);
 			$obj2->newComment();
+			RecipeScore::saveAllScore();
+			
 		return Redirect::to('/recipe/show/'.$id);
 	}
 

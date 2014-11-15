@@ -1,6 +1,8 @@
 <?php 
 class UserController extends BaseController
 {
+	
+	//sign up
 	public function getsignup()
 	{
 		return View::make('user.signup');
@@ -21,8 +23,10 @@ class UserController extends BaseController
 		$user->newUser();
 		return Redirect::to('signin');
 	}
-	public function getsignin()
+	
 
+	//sign in
+	public function getsignin()
 	{
 		if(Auth::check()){
 			return Redirect::to('/');
@@ -37,68 +41,60 @@ class UserController extends BaseController
 		return Redirect::to('signin');
 	}
 
+	//sign out
 	public function getsignout(){
-		 Auth::logout();
-		 return Redirect::to('/');
+		Auth::logout();
+		return Redirect::to('/');
 	}
 
-	public function showuser()
-	{
-			$name="PANG";
-			$email="hotmail";
-			return View::make('user.user')->with(array("name"=>$name,"email"=>$email));
-	}
 
+	//show index user
 	public function getindexuser()
 	{		$obj1=new User;
-			$obj2=new Recipe;
-			$users=$obj1->getById(Auth::user()->id);
-			$recipe=$obj2->getByUserId(Auth::user()->id);
-			
-			return View::make('user.indexProfile')->with(
-				array("name"=>$users->getName(),
-					  "email"=>$users->getEmail(),
-					  "image"=>$users->getImage(),
-					  "recipe"=>$recipe)
-				);
+		$obj2=new Recipe;
+		$users=$obj1->getById(Auth::user()->id);
+		$recipe=$obj2->getByUserId(Auth::user()->id);
+		
+		return View::make('user.indexProfile')->with(
+			array("name"=>$users->getName(),
+				"email"=>$users->getEmail(),
+				"image"=>$users->getImage(),
+				"recipe"=>$recipe)
+			);
 	}
 
+	//edit user
 	public function getedituser()
 	{		$obj1=new User;
-			$obj2=new Recipe;
-			$users=$obj1->getById(Auth::user()->id);
-			$recipe=$obj2->getByUserId(Auth::user()->id);
+		$obj2=new Recipe;
+		$users=$obj1->getById(Auth::user()->id);
+		$recipe=$obj2->getByUserId(Auth::user()->id);
 
-			return View::make('user.editProfile')->with(
-				array("name"=>$users->getName(),
-					"email"=>$users->getEmail(),
-					"image"=>$users->getImage(),
-					"recipe"=>$recipe));
+		return View::make('user.editProfile')->with(
+			array("name"=>$users->getName(),
+				"email"=>$users->getEmail(),
+				"image"=>$users->getImage(),
+				"recipe"=>$recipe));
 	}
 
 	public function postedituser(){
-				
-				$obj=new User;
-				$user=$obj->getById(Auth::user()->id);
-
-				$user->setName(Input::get("name"));
-
-				$user->setEmail(Input::get("email"));
-				
-				if (Input::get("password")!=NULL) {
-					$user->setPassword(Input::get('password'));
-				}
-
-				$file=Input::file('image');
-			if($file!=NULL){$newfile=time().".".$file->guessExtension();
-			$user->setImage($newfile);
-			$file->move(app_path().'/../public/upload/profileImage/',$newfile);
-			}
-				
-				$user->editUser();
 		
-		return Redirect::to('/user/index/'.Auth::user()->id);
+		$obj=new User;
+		$user=$obj->getById(Auth::user()->id);
+		$user->setName(Input::get("name"));
+		$user->setEmail(Input::get("email"));
+		if (Input::get("password")!=NULL) {
+			$user->setPassword(Input::get('password'));
+		}
+		$file=Input::file('image');
+		if($file!=NULL){$newfile=time().".".$file->guessExtension();
+		$user->setImage($newfile);
+		$file->move(app_path().'/../public/upload/profileImage/',$newfile);
 	}
+	$user->editUser();
+	
+	return Redirect::to('/user/index/'.Auth::user()->id);
+}
 
 
 

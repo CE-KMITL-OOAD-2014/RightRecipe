@@ -24,71 +24,60 @@ class RecipeScore{
     }
     
     //calulate score
-    public static function calScore($recipeid){
-    	$data=commentEloquent::where('recipeid','=',$recipeid)->get();
+    public static function calScore($data){  //$data is array comment
 		$size=count($data);
-        $result=NULL;
-		if($data==NULL){
-			return 0;
-		}
+        $result=0;
+		if($size==0){return 0;}
 
-		for($i=0;$i<$size;$i++){
-				$result=$result+($data[$i]->score)/$size;
+		foreach ($data as $key => $value) {
+				$result=$result+$value['score']; //Totals for each comment
 		}
-	       return $result;
+	   return $result/$size;   //Ave score:1 recipe
     }
 
-    //save score in database
+    //save score in database table: score
     public function saveScore($recipeid){
             $new=new recipeScoreEloquent;
+            $data=commentEloquent::where('recipeid','=',$recipeid)->get();
+            $new->score=$this->calScore($data->toArray()); 
             $new->recipeid=$recipeid;
-            $new->score=$this->calScore($recipeid);
             $new->save();
 
     }
 
     //save all score in database
-    public function saveAllScore(){
-        $callRecipe=new Recipe;
+    public static function saveAllScore(){
+       
         $callScore=new RecipeScore;
-        recipeScoreEloquent::where('recipeid',"<>",0)->delete();
-        $allRecipe=$callRecipe->getAll();
+        recipeScoreEloquent::where('recipeid',"<>",0)->delete(); //get all recipe id
+        $allRecipe=Recipe::getAll();
         $allScore=array();
         for ($i=0; $i <count($allRecipe) ; $i++) { 
             $allScore[$i]=$callScore->saveScore($allRecipe[$i]->getId());
         }
 
     }
+ 
 
-    //get all score from database: result recipeScore[]
-    public function getAllScore(){
-        $this->saveAllScore();
-       $data=recipeScoreEloquent::where('recipeid',"<>",0)->orderby('score','desc')->get();
-        $size=count($data);
-          $allScore= array( );
+ //get all score from database: result is recipeScore[]
+    public static function getAllScore(){ 
+        RecipeScore::saveAllScore();
+        return recipeScoreEloquent::where('recipeid',"<>",0)->get()->toArray();
+    }
 
-            for($i=0;$i<$size;$i++){           
-                $obj=new recipeScore;
-                $obj->recipeid=$data[$i]->recipeid;
-                $obj->score=$data[$i]->score;
-                $allScore[$i]=$obj;
-            }
-            
-            return $allScore; 
-     }
-
+   // show star in recipe
      public function getStar($recipeid){
             $data=recipeScoreEloquent::where('recipeid',"=",$recipeid)->get();
             if($data==NULL){
                 return NULL;
             } 
 
-                $star=new RecipeScore;
-                foreach ($data as $value) {
-                    $star->score=$value->score;
-                    $star->recipeid=$value->recipeid;
-                     return $star;
-                }
+            $star=new RecipeScore;
+            foreach ($data as $value) {
+                $star->score=$value->score;
+                $star->recipeid=$value->recipeid;
+                 return $star;
+            }
                
      }
 

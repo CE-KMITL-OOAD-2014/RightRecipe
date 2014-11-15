@@ -9,7 +9,6 @@ class RecipeController extends BaseController
 	public function postnewrecipe(){
 
 		$obj=new Recipe;
-		
 		$obj->setName(Input::get('name'));
 		$obj->setCategory(Input::get('category'));
 		$obj->setIngredient(Input::get('ingredient'));
@@ -21,21 +20,20 @@ class RecipeController extends BaseController
 		$obj->setImage($newfile);
 		$file->move(app_path().'/../public/upload/recipeImage/',$newfile);
 		$obj->newRecipe();
-					
-			return Redirect::to('/recipe/all');
+		RecipeScore::saveAllScore();
+
+		return Redirect::to('/recipe/all');
 	}
 
+	//show recipe
 	public function getshowrecipe($id)
-	{		//$obj1=new Recipe;
-			$show=Recipe::getById($id);
-			//$obj2=new Comment;
-			$showComment=Comment::getByRecipe($id);
-			//$obj3=new Category;
-			$showCategoey=Category::getById($show->getCategory());
-			$showStar=new RecipeScore;
-			$star=$showStar->getStar($id);
-			//$obj4=new User;
-			$username=User::getById($show->getUserId());
+	{		
+		$show=Recipe::getById($id);
+		$showComment=Comment::getByRecipe($id);
+		$showCategoey=Category::getById($show->getCategory());
+		$showStar=new RecipeScore;
+		$star=$showStar->getStar($id);
+		$username=User::getById($show->getUserId());
 
 		return View::make('recipe.showRecipe')->with(
 			array("id"=>$show->getId(),
@@ -55,64 +53,64 @@ class RecipeController extends BaseController
 			);
 	}	
 
+	//show all recipe
 	public function getallrecipe()
-	{		//$obj1=new Recipe;
-			$recipe=Recipe::getAll();
+	{			$recipe=Recipe::getAll();
 		return View::make('recipe.allRecipe')->with("recipe",$recipe);
 	}
 
+	//edit recipe
 	public function geteditrecipe($id)
-	{		//$obj=new Recipe;
-			$recipe=Recipe::getById($id);
-			$obj1=new Category;
-			//$obj2=new User;
-			$username=User::getById($recipe->getUserId());
-			$showStar=new RecipeScore;
-			$star=$showStar->getStar($id);
+	{		
+		$recipe=Recipe::getById($id);
+		$obj1=new Category;
+		$username=User::getById($recipe->getUserId());
+		$showStar=new RecipeScore;
+		$star=$showStar->getStar($id);
 		return View::make('recipe.editRecipe')->with(
 			array("username"=>$username->getName(),
-					"id"=>$recipe->getId(),
-					"name"=>$recipe->getName(),
-					"category"=>$recipe->getCategory(),
-					"ingredient"=>$recipe->getIngredient(),
-					"capacity"=>$recipe->getCapacity(),
-					"step"=>$recipe->getStep(),
-					"image"=>$recipe->getImage(),
-					"video"=>$recipe->getVideo(),
-					"star"=>$star->getScore()
-					)
+				"id"=>$recipe->getId(),
+				"name"=>$recipe->getName(),
+				"category"=>$recipe->getCategory(),
+				"ingredient"=>$recipe->getIngredient(),
+				"capacity"=>$recipe->getCapacity(),
+				"step"=>$recipe->getStep(),
+				"image"=>$recipe->getImage(),
+				"video"=>$recipe->getVideo(),
+				"star"=>$star->getScore()
+				)
 			);
 	}
 
 	public function posteditrecipe($id)
 	{
-			//$obj=new Recipe;
-			$edit=Recipe::getById($id);
-			$edit->setName(Input::get('name'));
-			$mode=Input::get('category');
-			if($mode!=0){$edit->setCategory($mode);}
-			$edit->setIngredient(Input::get('ingredient'));
-			$edit->setCapacity(Input::get('capacity'));
-			$edit->setStep(Input::get('step'));
-			$edit->setVideo(Input::get('video'));
-			
-			$file=Input::file('image');
-			if($file!=NULL){$newfile=time().".".$file->guessExtension();
+		$edit=Recipe::getById($id);
+		$edit->setName(Input::get('name'));
+		$mode=Input::get('category');
+		if($mode!=0){$edit->setCategory($mode);}
+		$edit->setIngredient(Input::get('ingredient'));
+		$edit->setCapacity(Input::get('capacity'));
+		$edit->setStep(Input::get('step'));
+		$edit->setVideo(Input::get('video'));
+
+		$file=Input::file('image');
+		if($file!=NULL){
+			$newfile=time().".".$file->guessExtension();
 			$edit->setImage($newfile);
 			$file->move(app_path().'/../public/upload/recipeImage/',$newfile);
-			}
-
-			$edit->editRecipe();
-			return Redirect::to('/recipe/show/'.$id);
+		}
+		$edit->editRecipe();
+		return Redirect::to('/recipe/show/'.$id);
 	}
 
+	
+	//show top recipe
 	public function gettoprecipe()
 	{	
-		
-		$obj=new TopRecipe;
-		$sortRecipe=$obj->sortMenu();
-
-		return View::make('recipe.topRecipe')->with("sortRecipe",$sortRecipe);
+		$data=RecipeScore::getAllScore();
+		$allScore=new TopRecipe;
+		$allScore=$allScore->getSortedRecipe($data);
+		return View::make('recipe.topRecipe')->with("sortRecipe",$allScore);
 	}
 
 
