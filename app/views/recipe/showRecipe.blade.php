@@ -104,7 +104,7 @@
 						<div class="col-md-9">
 							{{$step}}
 						</div>
-					</div><br>	
+					</div><br><hr>
 
 					
 					<!--Video-->
@@ -157,7 +157,7 @@
 							กรุณา <a href="/signin"> sign in</a>
 					@endif
 					
-
+					<hr>
 					<!--show comment-->
 					@foreach ($showComment as  $value) 
 					<?php 
@@ -165,19 +165,18 @@
 					?>
 
 					<div class="row">
-							<div class="row"><p><b>{{$value->getComment()}}<b></p> 	</div>
+							<div class="row col-md-offest-3 col-md-5"> {{$value->getComment()}}	</div>
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-offset-1 col-md-5">
 										{{"โดย: ". $username->getName()}}
 								</div>
 								<div class="col-md-6">
 										{{"เวลา: ". $value->getTime()}}
 								</div>
 						
-					</div>
+							</div>
+					</div><br>
 					@endforeach
-
-				</div>
 			</div>
 		</div>
 	</div>
