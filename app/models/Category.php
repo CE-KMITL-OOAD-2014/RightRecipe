@@ -25,6 +25,7 @@
         return $this->id;
     }
 
+    //search category in eloquent by categoryid 
     public static function getById($id)
     {
         $data= categoryEloquent::find($id);
@@ -39,7 +40,7 @@
     }
 
     
-
+    //created category
     public function newCategory(){
     	$obj=new categoryEloquent;
     	$obj->name=$this->name;

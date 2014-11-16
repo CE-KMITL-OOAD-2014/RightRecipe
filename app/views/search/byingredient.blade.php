@@ -19,28 +19,17 @@
 				<input class="form-control" class="input" type="text" name="nsearch" placeholder="ตัวอย่าง: หมู,เต้าหู้,ไข่">
 				
 				<div class="form-actions">
-						<input type="submit" value="Search" class="btn btn-primary" > 
+					<input type="submit" value="Search" class="btn btn-primary" > 
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
 <table class="table table-striped table-hover">
-
-
 	@if ($searchRecipe==NULL) 
 	<tr class="danger">
-
 		<td>ไม่พบรายการอาหารที่ต้องการ</td>
 	</tr>	
-
-
 	@else 
 	<thead>
 		<tr class="success">
@@ -57,12 +46,7 @@
 	$allRecipe=$obj->getById($searchRecipe[$i]);
 	$obj1=new User;
 	$username=$obj1->getById($allRecipe->getUserId());
-
-
-
 	?>
-
-
 	<tbody>
 		<tr>
 			<td>{{$i+1}}</td>
@@ -72,9 +56,6 @@
 	</tbody>
 	@endfor
 	@endif
-
-
-
 </table>
 
 @stop

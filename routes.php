@@ -43,3 +43,6 @@ Route::get('/search/ingredient','SearchController@getingredient');
 
 
 
+
+
+

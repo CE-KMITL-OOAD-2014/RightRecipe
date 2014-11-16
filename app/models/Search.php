@@ -1,15 +1,7 @@
 <?php 
 class Search{
 
-	private $allIngredient;
-
-	public function getIngredient(){
-		return $this->allIngredient;
-	}
-
-	public function setIngredient($value){
-		$this->allIngredient=explode(",",$this->allIngredient);
-	}
+	
 
 	public function searchByName($name){
 		

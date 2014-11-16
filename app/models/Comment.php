@@ -27,7 +27,6 @@ class Comment {
     {
         $this->comment = $comment;
 
-        // return $this;
     }
 
     
@@ -41,7 +40,6 @@ class Comment {
     {
         $this->time = $time;
 
-        // return $this;
     }
 
    
@@ -55,7 +53,6 @@ class Comment {
     {
         $this->score = $score;
 
-        // return $this;
     }
 
    
@@ -69,7 +66,6 @@ class Comment {
     {
         $this->recipeid = $recipeid;
 
-        // return $this;
     }
 
    
@@ -83,7 +79,6 @@ class Comment {
     {
         $this->userid = $userid;
 
-        // return $this;
     }
 
 	public function newComment(){
@@ -126,7 +121,7 @@ class Comment {
 	}
 
 	public static function getByRecipe($recipeid){
-		$data=commentEloquent::where('recipeid','=',$recipeid)->get();
+		$data=commentEloquent::where('recipeid','=',$recipeid)->get();//find comment by id
 		$size=count($data);
 		if($data==NULL){
 			return NULL;

@@ -4,9 +4,9 @@
 		*/
 		class CategoryController extends BaseController
 		{
-
+			//form std Category
 			public function getNormal($name){
-				//$aa=Input::get('mode');
+				
 				if($name=="boil"){
 					$id=1;
 				}
@@ -37,52 +37,13 @@
 				}
 
 				
+
 			return View::make('category.formCategory')->with(
 				array("arrCategory"=>$cate,
 					"title"=>$catName,
 					"star"=>$star));
 			}
 
-
-
-			// public function getboil(){
-			// 	$obj=new Search;
-			// 	$cate=$obj->searchByCategory(1);
-			// return View::make('category.formCategory')->with(array("arrCategory"=>$cate,"title"=>"ต้ม"));
-			// }
-
-			// public function getpad(){
-			// 	$obj=new Search;
-			// 	$cate=$obj->searchByCategory(2);
-			// return View::make('category.category')->with("cate",$cate);
-			// }
-
-
-			// public function getfried(){
-			// 	$obj=new Search;
-			// 	$cate=$obj->searchByCategory(3);
-			// return View::make('category.category')->with("cate",$cate);
-			// }
-
-			// public function getsteam(){ 
-			// 	$obj=new Search;
-			// 	$cate=$obj->searchByCategory(4);
-			// return View::make('category.category')->with("cate",$cate);
-			// }
-
-			// public function getgrill(){
-			// 	$obj=new Search;
-			// 	$cate=$obj->searchByCategory(5);
-			// return View::make('category.category')->with("cate",$cate);
-			// }
-
-			// public function getother(){
-			// 	$obj=new Search;
-			// 	$cate=$obj->searchByCategory(6);
-			// return View::make('category.category')->with("cate",$cate);
-			// }
-
-
 		}
 
- ?>
+		?>

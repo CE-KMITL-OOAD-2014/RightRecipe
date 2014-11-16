@@ -21,10 +21,9 @@
 
 					@endif
 					@endif
-					<div class="row">
-						<div class="panel-body">
-							<img src="/upload/recipeImage/{{$image}}"style=" max-width:535px" >
-						</div>
+					<div class="row col-md-12">
+							<img class="img-responsive" src="/upload/recipeImage/{{$image}}"style=" max-height:700px" ><br>
+						
 					</div>
 
 					<!--Name-->
@@ -41,6 +40,7 @@
 						<div class="col-md-3">
 							<div class="ratings">
 								<p class="pull-left">
+								<!-- create star -->
 									@for ($i=1; $i <=5 ; $i++) 
 									@if($i<=$star)
 									<span class="glyphicon glyphicon-star"></span>
@@ -106,11 +106,12 @@
 						</div>
 					</div><br>	
 
+					
+					<!--Video-->
 					@if($video!=NULL)
-					<!--Photo/clip-->
 					<div class="row">
 						<div class="col-md-3">
-							Photo/Clip:
+							Video:
 						</div><br>
 						<div class="col-md-9">
 							<iframe width="535" height="315" src="//www.youtube.com/embed/{{$video}}" frameborder="0" allowfullscreen></iframe>
@@ -122,69 +123,65 @@
 
 					<!--Comment-->	
 					@if(!Auth::guest())
-					<form action="{{url('/recipe/show/'.$id.'/comment')}}" method="POST">					
-						<div class="row">
-							<label>แสดงความคิดเห็น</label>	
-							<textarea class="form-control" name="comment" id="textArea" required></textarea>
-						</div>
-
-
-						<div class="row">	
-							<div class="col-md-2"> 
-								<h4>	 Rating	</h4>
+						<form action="{{url('/recipe/show/'.$id.'/comment')}}" method="POST">					
+							<div class="row">
+							<div class="row col-md-offset-1">
+								<label>แสดงความคิดเห็น</label>
+							</div><br>
+							<div class="row col-md-offset-1 col-md-10">	
+								<textarea class="form-control" name="comment" id="textArea" required></textarea>
+							</div>
 							</div>
 
-							<span class="pull-left col-md-offset-1 col-md-2">
-								<select name="score" class="form-control" id="select">
-									<option name="score" value="0">0</option>
-									<option name="score" value="1">1</option>
-									<option name="score" value="2">2</option>
-									<option name="score" value="3">3</option>
-									<option name="score" value="4">4</option>
-									<option name="score" value="5">5</option>
-								</select>
 
-							</span> 
-							<input type="submit" value="Send" class="btn btn-primary">
-						</div>
-						
-					</form>
+							<div class="row">	
+								<div class="col-md-2"> 
+									<h4>	 Rating	</h4>
+								</div>
+								<span class="pull-left col-md-offset-1 col-md-2">
+									<select name="score" class="form-control" id="select">
+										<option name="score" value="0">0</option>
+										<option name="score" value="1">1</option>
+										<option name="score" value="2">2</option>
+										<option name="score" value="3">3</option>
+										<option name="score" value="4">4</option>
+										<option name="score" value="5">5</option>
+									</select>
+
+								</span> 
+								<input type="submit" value="Send" class="btn btn-primary">
+							</div>
+						</form>
 					@else 
-					<label>แสดงความคิดเห็น</label> 
-					กรุณา <a href="/signin"> sign in</a>
+							<label>แสดงความคิดเห็น</label> 
+							กรุณา <a href="/signin"> sign in</a>
 					@endif
+					
 
 					<!--show comment-->
 					@foreach ($showComment as  $value) 
 					<?php 
-					$obj=new User;
-
-					$username=$obj->getById($value->getUserId());
-
+							$username=User::getById($value->getUserId());
 					?>
 
-
-
 					<div class="row">
-						<h4>{{$value->getComment()}}</h4> 
-						<h5>{{"โดย: ". $username->getName()}}</h5>
-
-
+							<div class="row"><p><b>{{$value->getComment()}}<b></p> 	</div>
+							<div class="row">
+								<div class="col-md-6">
+										{{"โดย: ". $username->getName()}}
+								</div>
+								<div class="col-md-6">
+										{{"เวลา: ". $value->getTime()}}
+								</div>
+						
 					</div>
 					@endforeach
-
 
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
 </div>
-
-
 @stop
 
 
